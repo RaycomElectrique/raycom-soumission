@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demande de soumission — Raycom Électrique</title>
+<script>const _w=console.warn;console.warn=function(...a){if(a[0]&&String(a[0]).indexOf('cdn.tailwindcss.com')>-1)return;_w.apply(console,a);};</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0a1b3d;--blue:#1e7fd6;--blue-light:#3ea0ee;--light:#f4f7fc;--border:#dbe3ef}
+  *{font-family:'Inter',sans-serif}
+  body{background:var(--light);color:var(--navy)}
+  .hero{position:relative;background:linear-gradient(135deg,rgba(10,27,61,.92) 0%,rgba(19,38,79,.88) 50%,rgba(30,58,107,.85) 100%),url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2400&q=85') center/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(30,127,214,.45) 0%,transparent 60%);pointer-events:none}
+  .hero > *{position:relative;z-index:1}
+  .card{background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 6px 32px rgba(10,27,61,.08)}
+  .btn-primary{background:linear-gradient(135deg,#1e7fd6 0%,#0a1b3d 100%);box-shadow:0 8px 28px rgba(30,127,214,.4);transition:transform .15s,box-shadow .15s}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(30,127,214,.55)}
+  input,select,textarea{width:100%;padding:.8rem 1rem;border:1.5px solid var(--border);border-radius:10px;background:#fff;font-size:.95rem;color:var(--navy);transition:border-color .15s,box-shadow .15s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(30,127,214,.15)}
+  label{font-weight:600;font-size:.875rem;color:var(--navy);margin-bottom:.4rem;display:block}
+  .req::after{content:" *";color:#ef4444}
+  .check-card{display:flex;align-items:center;gap:.6rem;padding:.85rem 1rem;border:1.5px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500;font-size:.9rem}
+  .check-card:hover{border-color:var(--blue);background:#eef5fc}
+  .check-card:has(input:checked){border-color:var(--blue);background:#e6f0fa;box-shadow:0 0 0 3px rgba(30,127,214,.12)}
+  .check-card input{width:auto;margin:0;accent-color:var(--blue)}
+  .trust-badge{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:#cbd9ec}
+  .progress{height:5px;background:#e5e7eb;border-radius:99px;overflow:hidden}
+  .progress-bar{height:100%;background:linear-gradient(90deg,#3ea0ee,#1e7fd6);transition:width .3s;width:0%}
+  .section-icon{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#1e7fd6,#0a1b3d);color:#fff;font-weight:800;font-size:.85rem;margin-right:.6rem}
+  .upload-box{border:2px dashed var(--border);border-radius:12px;padding:1rem;background:#f9fbfe;transition:all .15s}
+  .upload-box:hover{border-color:var(--blue);background:#eef5fc}
+  .upload-box label{font-size:.85rem;color:#475569;font-weight:500;margin-bottom:.4rem}
+  .upload-box input[type=file]{padding:.5rem;font-size:.85rem;background:#fff}
+  .radio-card{flex:1;display:flex;align-items:center;gap:.6rem;padding:1rem 1.2rem;border:1.5px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;transition:all .15s;font-weight:600}
+  .radio-card:hover{border-color:var(--blue);background:#eef5fc}
+  .radio-card:has(input:checked){border-color:var(--blue);background:#e6f0fa;box-shadow:0 0 0 3px rgba(30,127,214,.12)}
+  .radio-card input{width:auto;margin:0;accent-color:var(--blue)}
+  a.link-blue{color:var(--blue)}
+  a.link-blue:hover{color:var(--blue-light)}
+</style>
+</head>
+<body>
+
+<header class="hero text-white">
+  <div class="max-w-5xl mx-auto px-6 py-10">
+    <div class="flex items-center justify-between mb-10 flex-wrap gap-6">
+      <div class="bg-white rounded-2xl px-10 py-7 inline-block shadow-2xl">
+        <img src="LOGO%20Raycom%20Transparent.png" alt="Raycom Électrique inc." class="h-28 md:h-32 w-auto block">
+      </div>
+      <div class="flex flex-col items-end text-right gap-1">
+        <div class="text-xs uppercase tracking-widest text-blue-300 font-bold">RBQ 5590-9402-01</div>
+        <a href="tel:+14504748470" class="text-2xl font-black hover:text-blue-300 transition">📞 450-474-8470</a>
+        <a href="sms:+14388016401" class="text-sm font-semibold text-blue-200 hover:text-blue-300 transition">💬 Texto : 438-801-6401</a>
+      </div>
+    </div>
+
+    <div class="max-w-3xl">
+      <h1 class="text-4xl md:text-5xl font-black leading-tight mb-4">
+        Soumission <span style="color:#3ea0ee">gratuite</span><br>
+        en quelques clics
+      </h1>
+      <p class="text-lg text-blue-100 mb-6 max-w-2xl">
+        Électricité, solaire, batteries et bornes de recharge.<br>
+        Maître électricien certifié au Québec, financement disponible, équipements de marques reconnues.
+      </p>
+      <div class="flex flex-wrap gap-5 text-sm">
+        <div class="trust-badge"><svg width="18" height="18" fill="none" stroke="#3ea0ee" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Maître électricien RBQ</div>
+        <div class="trust-badge"><svg width="18" height="18" fill="none" stroke="#3ea0ee" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Subventions Hydro-Québec</div>
+        <div class="trust-badge"><svg width="18" height="18" fill="none" stroke="#3ea0ee" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Financement disponible</div>
+        <div class="trust-badge"><svg width="18" height="18" fill="none" stroke="#3ea0ee" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Équipements certifiés</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-6 -mt-8 pb-16 relative z-10">
+  <div class="card p-6 md:p-10">
+
+    <div class="progress mb-8"><div class="progress-bar" id="progressBar"></div></div>
+
+    <form id="raycomForm" class="space-y-10">
+
+      <!-- 1. COORDONNÉES -->
+      <section>
+        <h2 class="text-xl font-bold mb-1 flex items-center"><span class="section-icon">1</span>Vos coordonnées</h2>
+        <p class="text-sm text-slate-500 mb-5 ml-11">On vous contacte rapidement pour confirmer votre projet.</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div><label class="req">Prénom</label><input name="firstName" required></div>
+          <div><label class="req">Nom</label><input name="lastName" required></div>
+          <div><label class="req">Courriel</label><input type="email" name="email" required></div>
+          <div><label class="req">Téléphone</label><input type="tel" name="phone" id="phone" placeholder="514 555-1234" required></div>
+        </div>
+      </section>
+
+      <!-- 2. ADRESSE -->
+      <section>
+        <h2 class="text-xl font-bold mb-1 flex items-center"><span class="section-icon">2</span>Adresse du projet</h2>
+        <p class="text-sm text-slate-500 mb-5 ml-11">Où aurait lieu l'installation.</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="md:col-span-2"><label class="req">Adresse</label><input name="address1" required></div>
+          <div><label class="req">Ville</label><input name="city" required></div>
+          <div><label class="req">Province</label>
+            <select name="state" required>
+              <option value="QC" selected>Québec</option>
+              <option value="ON">Ontario</option>
+              <option value="NB">Nouveau-Brunswick</option>
+            </select>
+          </div>
+          <div><label class="req">Code postal</label><input name="postalCode" id="postal" placeholder="H1A 1A1" required></div>
+          <div><label>Pays</label><input name="country" value="Canada" readonly class="bg-slate-50"></div>
+        </div>
+      </section>
+
+      <!-- 3. PROJET -->
+      <section>
+        <h2 class="text-xl font-bold mb-1 flex items-center"><span class="section-icon">3</span>Votre projet</h2>
+        <p class="text-sm text-slate-500 mb-5 ml-11">Aidez-nous à bien comprendre vos besoins.</p>
+
+        <div class="mb-5">
+          <label class="req">Type de bâtiment</label>
+          <select name="projet_segment" required>
+            <option value="">— Sélectionnez —</option>
+            <option value="Résidentiel">Résidentiel</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Multilogement">Multilogement</option>
+            <option value="Municipal">Municipal / Institutionnel</option>
+            <option value="Agricole">Agricole / Industriel</option>
+          </select>
+        </div>
+
+        <div class="mb-5">
+          <label class="req">Nature du projet</label>
+          <div class="flex gap-3 flex-wrap">
+            <label class="radio-card"><input type="radio" name="projet_nature" value="Existant" checked id="natureExistant"><span>🏠 Bâtiment existant</span></label>
+            <label class="radio-card"><input type="radio" name="projet_nature" value="Construction neuve" id="natureNeuf"><span>🏗️ Construction neuve</span></label>
+          </div>
+        </div>
+
+        <div class="mb-5">
+          <label class="req">Composantes souhaitées (cochez tout ce qui s'applique)</label>
+          <div class="grid md:grid-cols-2 gap-3" id="composantesGrid">
+            <label class="check-card"><input type="checkbox" name="composantes" value="Panneaux solaires"><span>☀️ Panneaux solaires</span></label>
+            <label class="check-card"><input type="checkbox" name="composantes" value="Batterie de stockage"><span>🔋 Batterie de stockage</span></label>
+            <label class="check-card"><input type="checkbox" name="composantes" value="Borne de recharge VÉ"><span>🔌 Borne de recharge VÉ</span></label>
+            <label class="check-card"><input type="checkbox" name="composantes" value="Travaux électriques"><span>⚡ Travaux électriques</span></label>
+            <label class="check-card"><input type="checkbox" name="composantes" value="Génératrice"><span>🏠 Génératrice</span></label>
+            <label class="check-card"><input type="checkbox" name="composantes" value="Inspection / Diagnostic"><span>🔍 Inspection / Diagnostic</span></label>
+          </div>
+        </div>
+
+        <!-- Consommation : un seul dropdown -->
+        <div class="mb-5" id="blocConso">
+          <label>Consommation électrique</label>
+          <select name="hq_consommation_bracket">
+            <option value="">— Sélectionnez —</option>
+            <option value="< 100 $/mois (~10 000 kWh/an)">Moins de 100 $/mois  (~10 000 kWh/an)</option>
+            <option value="100-200 $/mois (10-20 000 kWh/an)">100 à 200 $/mois  (10 000 – 20 000 kWh/an)</option>
+            <option value="200-300 $/mois (20-30 000 kWh/an)">200 à 300 $/mois  (20 000 – 30 000 kWh/an)</option>
+            <option value="300-500 $/mois (30-50 000 kWh/an)">300 à 500 $/mois  (30 000 – 50 000 kWh/an)</option>
+            <option value="500+ $/mois (50 000+ kWh/an)">Plus de 500 $/mois  (50 000+ kWh/an)</option>
+            <option value="Ne sais pas">Je ne sais pas</option>
+          </select>
+          <p class="text-xs text-slate-500 mt-1">Approximation suffisante — votre facture Hydro nous donnera le détail. (Estimations basées sur tarif D résidentiel ≈ 0,10 $/kWh.)</p>
+        </div>
+
+        <div>
+          <label>Notes / précisions</label>
+          <textarea name="projet_notes" rows="4" placeholder="Toiture, échéancier, contraintes particulières..."></textarea>
+        </div>
+      </section>
+
+      <!-- 4. DOCUMENTS & PHOTOS -->
+      <section>
+        <h2 class="text-xl font-bold mb-1 flex items-center"><span class="section-icon">4</span>Documents & photos</h2>
+        <p class="text-sm text-slate-500 mb-5 ml-11">Plus on a d'info, plus la soumission est précise.</p>
+
+        <!-- BLOC EXISTANT -->
+        <div id="blocExistant" class="space-y-4">
+
+          <div class="upload-box" id="blocFactureHQ">
+            <label class="font-bold text-sm text-slate-700">📄 Facture Hydro-Québec (PDF ou image)</label>
+            <p class="text-xs text-slate-500 mb-2">Idéalement les 12 derniers mois.</p>
+            <input type="file" name="doc_facture_hq" id="factureHQ" accept=".pdf,.jpg,.jpeg,.png" multiple>
+          </div>
+
+          <div class="upload-box">
+            <label class="font-bold text-sm text-slate-700">📸 Photos du panneau électrique</label>
+            <p class="text-xs text-slate-500 mb-2">Vue rapprochée + vue d'ensemble (porte ouverte si possible).</p>
+            <input type="file" name="photos_panneau" accept="image/*,.pdf" multiple>
+          </div>
+
+          <div class="upload-box">
+            <label class="font-bold text-sm text-slate-700">📸 Photos du compteur électrique</label>
+            <p class="text-xs text-slate-500 mb-2">Vue rapprochée + vue d'ensemble (entrée électrique extérieure).</p>
+            <input type="file" name="photos_compteur" accept="image/*,.pdf" multiple>
+          </div>
+
+          <div class="upload-box">
+            <label class="font-bold text-sm text-slate-700">📸 Photos de l'emplacement d'installation</label>
+            <p class="text-xs text-slate-500 mb-2">Toiture, mur, cour, garage, stationnement... bref où vont les équipements.</p>
+            <input type="file" name="photos_emplacement" accept="image/*,.pdf" multiple>
+          </div>
+        </div>
+
+        <!-- BLOC CONSTRUCTION NEUVE -->
+        <div id="blocNeuf" class="space-y-4 hidden">
+          <div class="upload-box">
+            <label class="font-bold text-sm text-slate-700">📐 Plans de construction</label>
+            <p class="text-xs text-slate-500 mb-2">Plans architecturaux, électriques, mécaniques (PDF ou images).</p>
+            <input type="file" name="doc_plans" accept=".pdf,.jpg,.jpeg,.png,.dwg" multiple>
+          </div>
+
+          <div class="upload-box">
+            <label class="font-bold text-sm text-slate-700">📎 Autres pièces justificatives</label>
+            <p class="text-xs text-slate-500 mb-2">Devis, spécifications, fiches techniques... toute info utile au devis.</p>
+            <input type="file" name="doc_autres" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx" multiple>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-400 mt-3 italic">📦 Vous pouvez sélectionner plusieurs fichiers à la fois. Max ~10 Mo par fichier.</p>
+      </section>
+
+      <div class="pt-2">
+        <button type="submit" class="btn-primary w-full text-white font-bold text-lg py-4 rounded-xl uppercase tracking-wide">
+          Obtenir ma soumission gratuite →
+        </button>
+        <p class="text-xs text-slate-500 text-center mt-3">
+          🔒 Vos informations restent confidentielles. Aucun engagement.
+        </p>
+      </div>
+    </form>
+
+    <div id="successMsg" class="hidden text-center py-12">
+      <div class="text-6xl mb-4">✅</div>
+      <h2 class="text-3xl font-black mb-3" style="color:#0a1b3d">Merci, votre demande est reçue !</h2>
+      <p class="text-slate-700 text-lg mb-4">Un expert Raycom analyse votre projet en ce moment.</p>
+      <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-5 max-w-xl mx-auto text-left">
+        <p class="font-bold text-slate-800 mb-2">📬 Prochaines étapes :</p>
+        <ul class="text-slate-700 text-sm space-y-1">
+          <li>✓ Vous allez recevoir un <strong>courriel et un texto de confirmation</strong> dans les prochaines minutes</li>
+          <li>✓ Notre équipe vous prépare un <strong>devis personnalisé sous 24-48 h ouvrables</strong></li>
+          <li>✓ Une question urgente ? Appelez-nous au <a href="tel:+14504748470" class="link-blue font-bold">450-474-8470</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-8 p-6">
+    <p class="text-center text-xs uppercase tracking-widest text-slate-500 font-bold mb-5">Nos partenaires & marques installées</p>
+    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+      <img src="tesla-powerwall.svg" alt="Tesla Powerwall Certified Installer" class="h-14 w-auto opacity-90 hover:opacity-100 transition">
+      <img src="sigenergy.png" alt="Sigenergy" class="h-10 w-auto opacity-80 hover:opacity-100 transition">
+      <img src="fox-ess.webp" alt="Fox ESS" class="h-10 w-auto opacity-80 hover:opacity-100 transition">
+      <img src="financeit.svg" alt="Financeit" class="h-10 w-auto opacity-90 hover:opacity-100 transition">
+    </div>
+  </div>
+
+  <div class="text-center mt-8 text-sm text-slate-500">
+    <strong style="color:#0a1b3d">Raycom Électrique inc.</strong> · RBQ 5590-9402 · <a class="link-blue" href="https://www.raycomelectrique.com">raycomelectrique.com</a><br>
+    📞 450-474-8470 · 💬 Texto 438-801-6401<br>
+    Électricité • Solaire • Stockage • Bornes VÉ
+  </div>
+</main>
+
+<script>
+const WEBHOOK_URL = "https://hook.us2.make.com/8x27ox78k2zs8iq9h9q9we7dtcq75rvd";
+
+// Format téléphone
+document.getElementById('phone').addEventListener('input', e=>{
+  let v = e.target.value.replace(/\D/g,'').slice(0,10);
+  if(v.length>6) v = v.slice(0,3)+' '+v.slice(3,6)+'-'+v.slice(6);
+  else if(v.length>3) v = v.slice(0,3)+' '+v.slice(3);
+  e.target.value = v;
+});
+
+// Format code postal
+document.getElementById('postal').addEventListener('input', e=>{
+  let v = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);
+  if(v.length>3) v = v.slice(0,3)+' '+v.slice(3);
+  e.target.value = v;
+});
+
+// Logique conditionnelle uploads
+const blocExistant = document.getElementById('blocExistant');
+const blocNeuf = document.getElementById('blocNeuf');
+const blocFactureHQ = document.getElementById('blocFactureHQ');
+const blocConso = document.getElementById('blocConso');
+const composantesInputs = document.querySelectorAll('input[name="composantes"]');
+const natureRadios = document.querySelectorAll('input[name="projet_nature"]');
+
+function refreshBlocs(){
+  const nature = document.querySelector('input[name="projet_nature"]:checked').value;
+  const composantes = Array.from(composantesInputs).filter(i=>i.checked).map(i=>i.value);
+  const onlyBorne = composantes.length===1 && composantes[0]==='Borne de recharge VÉ';
+
+  if(nature==='Construction neuve'){
+    blocExistant.classList.add('hidden');
+    blocNeuf.classList.remove('hidden');
+    blocConso.classList.add('hidden');
+  } else {
+    blocExistant.classList.remove('hidden');
+    blocNeuf.classList.add('hidden');
+    blocConso.classList.remove('hidden');
+    // Borne seule = pas besoin facture Hydro
+    if(onlyBorne){
+      blocFactureHQ.classList.add('hidden');
+      blocConso.classList.add('hidden');
+    } else {
+      blocFactureHQ.classList.remove('hidden');
+      blocConso.classList.remove('hidden');
+    }
+  }
+}
+natureRadios.forEach(r=>r.addEventListener('change', refreshBlocs));
+composantesInputs.forEach(c=>c.addEventListener('change', refreshBlocs));
+refreshBlocs();
+
+// Progress bar
+const form = document.getElementById('raycomForm');
+const bar = document.getElementById('progressBar');
+function updateProgress(){
+  const required = form.querySelectorAll('[required]');
+  let filled = 0;
+  required.forEach(f=>{ if(f.value.trim()) filled++; });
+  bar.style.width = Math.round((filled/required.length)*100)+'%';
+}
+form.addEventListener('input', updateProgress);
+form.addEventListener('change', updateProgress);
+
+// Helper : upload chaque fichier sur tmpfiles.org (anonyme, gratuit, CORS ouvert, max 100MB)
+// Retourne JSON: { status:"success", data:{ url:"https://tmpfiles.org/dl/12345/nom.jpg" } }
+// On transforme le lien en lien direct: /dl/ → /
+async function uploadOne(file){
+  const fd = new FormData();
+  fd.append('file', file);
+  const res = await fetch('https://tmpfiles.org/api/v1/upload', { method:'POST', body: fd });
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  const json = await res.json();
+  if(!json || !json.data || !json.data.url) throw new Error('réponse invalide');
+  // /dl/ = page download, on veut le lien direct fichier
+  return json.data.url.replace('tmpfiles.org/', 'tmpfiles.org/dl/').replace('/dl/dl/','/dl/');
+}
+async function filesToUrls(fileList){
+  if(!fileList || fileList.length===0) return '';
+  const out = [];
+  for(const f of fileList){
+    try{
+      const url = await uploadOne(f);
+      out.push(`${f.name} (${(f.size/1024/1024).toFixed(2)} Mo): ${url}`);
+      console.log('✅ Upload OK:', f.name, '→', url);
+    }catch(e){
+      console.error('❌ Upload échoué:', f.name, e);
+      out.push(`${f.name} (${(f.size/1024/1024).toFixed(2)} Mo): ÉCHEC UPLOAD - ${e.message}`);
+    }
+  }
+  return out.join(' | ');
+}
+
+// Submit
+form.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const btn = form.querySelector('button[type=submit]');
+  btn.disabled = true;
+  btn.innerHTML = 'Envoi en cours... ⏳';
+
+  const fd = new FormData(form);
+  const composantes = fd.getAll('composantes');
+
+  const payload = {
+    // Champs basiques — noms alignés sur ce que Make attend déjà
+    "First name": fd.get('firstName'),
+    "Last name":  fd.get('lastName'),
+    "Email":      fd.get('email'),
+    "Phone":      fd.get('phone'),
+    // Adresse
+    "Address":    fd.get('address1'),
+    "City":       fd.get('city'),
+    "State":      fd.get('state'),
+    "Postal code":fd.get('postalCode'),
+    "Country":    'CA',
+    // Champs custom Raycom
+    "projet_segment":           fd.get('projet_segment'),
+    "projet_nature":            fd.get('projet_nature'),
+    "projet_composantes":       composantes,
+    "projet_composantes_str":   composantes.join(', '),
+    "hq_consommation_bracket":  fd.get('hq_consommation_bracket') || null,
+    "projet_notes":             fd.get('projet_notes'),
+    "source":                   'formulaire-raycom-services',
+    "submitted_at":             new Date().toISOString()
+  };
+
+  // Métadonnées fichiers (noms + tailles seulement)
+  try{
+    payload["doc_facture_hq"]    = await filesToUrls(document.querySelector('[name=doc_facture_hq]').files);
+    payload["photos_panneau"]    = await filesToUrls(document.querySelector('[name=photos_panneau]').files);
+    payload["photos_compteur"]   = await filesToUrls(document.querySelector('[name=photos_compteur]').files);
+    payload["photos_emplacement"]= await filesToUrls(document.querySelector('[name=photos_emplacement]').files);
+    payload["doc_plans"]         = await filesToUrls(document.querySelector('[name=doc_plans]').files);
+    payload["doc_autres"]        = await filesToUrls(document.querySelector('[name=doc_autres]').files);
+  }catch(err){console.error(err)}
+
+  try{
+    await fetch(WEBHOOK_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    form.classList.add('hidden');
+    document.getElementById('successMsg').classList.remove('hidden');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(err){
+    alert('Erreur lors de l\'envoi. Réessayez ou appelez-nous au 450-474-8470.');
+    btn.disabled = false;
+    btn.innerHTML = 'Obtenir ma soumission gratuite →';
+  }
+});
+</script>
+</body>
+</html>
