@@ -401,12 +401,22 @@ form.addEventListener('submit', async e=>{
     payload["doc_autres"]        = await filesToUrls(document.querySelector('[name=doc_autres]').files);
   }catch(err){console.error(err)}
 
+  const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/Ey6SB5epk8GFGgL5BfhX/webhook-trigger/dd1034eb-a105-4af2-9ccb-35671037b97e';
+
   try{
-    await fetch(WEBHOOK_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
-    });
+    // Double POST en parallèle : Make (notif email Raycom) + GHL (création lead CRM direct)
+    await Promise.allSettled([
+      fetch(WEBHOOK_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      }),
+      fetch(GHL_WEBHOOK_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      })
+    ]);
     form.classList.add('hidden');
     document.getElementById('successMsg').classList.remove('hidden');
     window.scrollTo({top:0,behavior:'smooth'});
