@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Demande de soumission — Raycom Électrique</title>
+<title>Soumission gratuite — Raycom Électrique</title>
 <script>const _w=console.warn;console.warn=function(...a){if(a[0]&&String(a[0]).indexOf('cdn.tailwindcss.com')>-1)return;_w.apply(console,a);};</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -26,6 +26,8 @@
   .check-card:has(input:checked){border-color:var(--blue);background:#e6f0fa;box-shadow:0 0 0 3px rgba(30,127,214,.12)}
   .check-card input{width:auto;margin:0;accent-color:var(--blue)}
   .trust-badge{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:#cbd9ec}
+  .hero-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.8rem;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:.3rem .85rem;backdrop-filter:blur(4px)}
+  .hero-pill strong{color:#7dd3fc}
   .progress{height:5px;background:#e5e7eb;border-radius:99px;overflow:hidden}
   .progress-bar{height:100%;background:linear-gradient(90deg,#3ea0ee,#1e7fd6);transition:width .3s;width:0%}
   .section-icon{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#1e7fd6,#0a1b3d);color:#fff;font-weight:800;font-size:.85rem;margin-right:.6rem}
@@ -37,15 +39,25 @@
   .radio-card:hover{border-color:var(--blue);background:#eef5fc}
   .radio-card:has(input:checked){border-color:var(--blue);background:#e6f0fa;box-shadow:0 0 0 3px rgba(30,127,214,.12)}
   .radio-card input{width:auto;margin:0;accent-color:var(--blue)}
+  .radio-card-sm{flex:1;display:flex;align-items:center;gap:.5rem;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500;font-size:.85rem}
+  .radio-card-sm:hover{border-color:var(--blue);background:#eef5fc}
+  .radio-card-sm:has(input:checked){border-color:var(--blue);background:#e6f0fa;box-shadow:0 0 0 3px rgba(30,127,214,.12)}
+  .radio-card-sm input{width:auto;margin:0;accent-color:var(--blue)}
   a.link-blue{color:var(--blue)}
   a.link-blue:hover{color:var(--blue-light)}
+  .borne-bloc{background:#eff6ff;border:1.5px solid #93c5fd;border-radius:12px;padding:1.2rem}
+  .subsidy-row{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;padding:.3rem 0;border-bottom:1px solid #d1fae5}
+  .subsidy-row:last-child{border-bottom:none;padding-top:.5rem;font-weight:700;font-size:.9rem}
+  .financing-badge{display:flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,#0a1b3d,#1e4080);border-radius:10px;padding:.75rem 1rem;margin-top:.75rem}
+  .legal-note{font-size:.73rem;color:#94a3b8;font-style:italic;line-height:1.5}
+  .success-budget-pill{display:inline-flex;align-items:center;gap:.5rem;background:#e6f0fa;border:1.5px solid #93c5fd;border-radius:12px;padding:.6rem 1.2rem;font-size:1rem;font-weight:700;color:#0a1b3d}
 </style>
 </head>
 <body>
 
 <header class="hero text-white">
   <div class="max-w-5xl mx-auto px-6 py-10">
-    <div class="flex items-center justify-between mb-10 flex-wrap gap-6">
+    <div class="flex items-center justify-between mb-8 flex-wrap gap-6">
       <div class="bg-white rounded-2xl px-10 py-7 inline-block shadow-2xl">
         <img src="LOGO%20Raycom%20Transparent.png" alt="Raycom Électrique inc." class="h-28 md:h-32 w-auto block">
       </div>
@@ -55,19 +67,47 @@
         <a href="sms:+14388016401" class="text-sm font-semibold text-blue-200 hover:text-blue-300 transition">💬 Texto : 438-801-6401</a>
       </div>
     </div>
+
     <div class="max-w-3xl">
-      <h1 class="text-4xl md:text-5xl font-black leading-tight mb-4">Soumission <span style="color:#3ea0ee">gratuite</span><br>en quelques clics</h1>
-      <p class="text-lg text-blue-100 mb-6 max-w-2xl">Électricité, solaire, batteries et bornes de recharge.<br>Maître électricien certifié au Québec.</p>
+      <h1 class="text-4xl md:text-5xl font-black leading-tight mb-4">
+        Soumission <span style="color:#3ea0ee">gratuite</span><br>
+        en quelques clics
+      </h1>
+      <p class="text-lg text-blue-100 mb-5 max-w-2xl">
+        Électricité, solaire, batteries et bornes de recharge.<br>
+        Maître électricien certifié au Québec — résidentiel, commercial, multilogement.
+      </p>
+
+      <!-- Trust badges ligne 1 -->
+      <div class="flex flex-wrap gap-4 mb-4 text-sm">
+        <div class="trust-badge"><svg width="18" height="18" fill="none" stroke="#3ea0ee" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Maître électricien RBQ</div>
+        <div class="trust-badge"><svg width="18" height="18" fill="none" stroke="#3ea0ee" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Subventions Hydro-Québec</div>
+        <div class="trust-badge"><svg width="18" height="18" fill="none" stroke="#3ea0ee" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Financement disponible</div>
+        <div class="trust-badge"><svg width="18" height="18" fill="none" stroke="#3ea0ee" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Tesla · Sigenergy · FoxESS certifiés</div>
+      </div>
+
+      <!-- Valeur props ligne 2 — pills -->
+      <div class="flex flex-wrap gap-2">
+        <span class="hero-pill">💳 <strong>Financeit</strong> — mensualités dès 150 $/mois*</span>
+        <span class="hero-pill">🌿 <strong>Incitatifs gouvernementaux</strong> jusqu'à 5 000 $+</span>
+        <span class="hero-pill">⚡ Estimation budgétaire <strong>instantanée</strong></span>
+        <span class="hero-pill">📋 Réponse sous <strong>24–48 h</strong></span>
+      </div>
     </div>
   </div>
 </header>
 
 <main class="max-w-3xl mx-auto px-6 -mt-8 pb-16 relative z-10">
   <div class="card p-6 md:p-10">
+
     <div class="progress mb-8"><div class="progress-bar" id="progressBar"></div></div>
+
     <form id="raycomForm" class="space-y-10">
+
+      <!-- 1. COORDONNÉES -->
       <section>
         <h2 class="text-xl font-bold mb-1 flex items-center"><span class="section-icon">1</span>Vos coordonnées</h2>
+        <p class="text-sm text-slate-500 mb-5 ml-11">On vous contacte rapidement pour confirmer votre projet.</p>
         <div class="grid md:grid-cols-2 gap-4">
           <div><label class="req">Prénom</label><input name="firstName" required></div>
           <div><label class="req">Nom</label><input name="lastName" required></div>
@@ -75,222 +115,644 @@
           <div><label class="req">Téléphone</label><input type="tel" name="phone" id="phone" placeholder="514 555-1234" required></div>
         </div>
       </section>
+
+      <!-- 2. ADRESSE -->
       <section>
         <h2 class="text-xl font-bold mb-1 flex items-center"><span class="section-icon">2</span>Adresse du projet</h2>
+        <p class="text-sm text-slate-500 mb-5 ml-11">Où aurait lieu l'installation.</p>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="md:col-span-2"><label class="req">Adresse</label><input name="address1" required></div>
           <div><label class="req">Ville</label><input name="city" required></div>
-          <div><label class="req">Province</label><select name="state" required><option value="QC" selected>Québec</option><option value="ON">Ontario</option></select></div>
+          <div><label class="req">Province</label>
+            <select name="state" required>
+              <option value="QC" selected>Québec</option>
+              <option value="ON">Ontario</option>
+              <option value="NB">Nouveau-Brunswick</option>
+            </select>
+          </div>
           <div><label class="req">Code postal</label><input name="postalCode" id="postal" placeholder="H1A 1A1" required></div>
+          <div><label>Pays</label><input name="country" value="Canada" readonly class="bg-slate-50"></div>
         </div>
       </section>
+
+      <!-- 3. PROJET -->
       <section>
         <h2 class="text-xl font-bold mb-1 flex items-center"><span class="section-icon">3</span>Votre projet</h2>
-        <div class="mb-5"><label class="req">Type de bâtiment</label><select name="projet_segment" required><option value="">— Sélectionnez —</option><option value="Résidentiel">Résidentiel</option><option value="Commercial">Commercial</option><option value="Multilogement">Multilogement</option><option value="Municipal">Municipal / Institutionnel</option><option value="Agricole">Agricole / Industriel</option></select></div>
-        <div class="mb-5"><label class="req">Nature du projet</label><div class="flex gap-3 flex-wrap"><label class="radio-card"><input type="radio" name="projet_nature" value="Existant" checked><span>🏠 Bâtiment existant</span></label><label class="radio-card"><input type="radio" name="projet_nature" value="Construction neuve"><span>🏗️ Construction neuve</span></label></div></div>
-        <div class="mb-5"><label class="req">Composantes souhaitées</label><div class="grid md:grid-cols-2 gap-3"><label class="check-card"><input type="checkbox" name="composantes" value="Panneaux solaires"><span>☀️ Panneaux solaires</span></label><label class="check-card"><input type="checkbox" name="composantes" value="Batterie de stockage"><span>🔋 Batterie de stockage</span></label><label class="check-card"><input type="checkbox" name="composantes" value="Borne de recharge VÉ"><span>🔌 Borne de recharge VÉ</span></label><label class="check-card"><input type="checkbox" name="composantes" value="Travaux électriques"><span>⚡ Travaux électriques</span></label><label class="check-card"><input type="checkbox" name="composantes" value="Génératrice"><span>🏠 Génératrice</span></label><label class="check-card"><input type="checkbox" name="composantes" value="Inspection / Diagnostic"><span>🔍 Inspection / Diagnostic</span></label></div></div>
-        <div class="mb-5"><label>Consommation électrique</label><select name="hq_consommation_bracket"><option value="">— Sélectionnez —</option><option value="< 100 $/mois (~10 000 kWh/an)">Moins de 100 $/mois (~10 000 kWh/an)</option><option value="100-200 $/mois (10-20 000 kWh/an)">100 à 200 $/mois (10-20 000 kWh/an)</option><option value="200-300 $/mois (20-30 000 kWh/an)">200 à 300 $/mois (20-30 000 kWh/an)</option><option value="300-500 $/mois (30-50 000 kWh/an)">300 à 500 $/mois (30-50 000 kWh/an)</option><option value="500+ $/mois (50 000+ kWh/an)">Plus de 500 $/mois (50 000+ kWh/an)</option></select></div>
-        <div><label>Notes</label><textarea name="projet_notes" rows="4" placeholder="Toiture, échéancier..."></textarea></div>
+        <p class="text-sm text-slate-500 mb-5 ml-11">Ces informations nous permettent de vous préparer une estimation précise.</p>
+
+        <div class="mb-5">
+          <label class="req">Type de bâtiment</label>
+          <select name="projet_segment" id="projet_segment" required>
+            <option value="">— Sélectionnez —</option>
+            <option value="Résidentiel">Résidentiel (maison unifamiliale)</option>
+            <option value="Commercial">Commercial (bureau, commerce, industriel)</option>
+            <option value="Multilogement">Multilogement (2 à 100+ logements)</option>
+            <option value="Municipal">Municipal / Institutionnel</option>
+            <option value="Agricole">Agricole / Industriel</option>
+          </select>
+        </div>
+
+        <div class="mb-5">
+          <label class="req">Nature du projet</label>
+          <div class="flex gap-3 flex-wrap">
+            <label class="radio-card"><input type="radio" name="projet_nature" value="Existant" checked id="natureExistant"><span>🏠 Bâtiment existant</span></label>
+            <label class="radio-card"><input type="radio" name="projet_nature" value="Construction neuve" id="natureNeuf"><span>🏗️ Construction neuve</span></label>
+          </div>
+        </div>
+
+        <div class="mb-5">
+          <label class="req">Composantes souhaitées (cochez tout ce qui s'applique)</label>
+          <div class="grid md:grid-cols-2 gap-3" id="composantesGrid">
+            <label class="check-card"><input type="checkbox" name="composantes" value="Panneaux solaires"><span>☀️ Panneaux solaires</span></label>
+            <label class="check-card"><input type="checkbox" name="composantes" value="Batterie de stockage"><span>🔋 Batterie de stockage</span></label>
+            <label class="check-card"><input type="checkbox" name="composantes" value="Borne de recharge VÉ"><span>🔌 Borne de recharge VÉ</span></label>
+            <label class="check-card"><input type="checkbox" name="composantes" value="Travaux électriques"><span>⚡ Travaux électriques généraux</span></label>
+            <label class="check-card"><input type="checkbox" name="composantes" value="Génératrice"><span>🏠 Génératrice / Alimentation de secours</span></label>
+            <label class="check-card"><input type="checkbox" name="composantes" value="Inspection / Diagnostic"><span>🔍 Inspection / Diagnostic</span></label>
+          </div>
+        </div>
+
+        <!-- SECTION DYNAMIQUE BORNE — visible si "Borne de recharge VÉ" coché -->
+        <div id="blocBorne" class="hidden mb-5">
+          <div class="borne-bloc">
+            <h3 class="font-bold text-sm mb-4" style="color:#1d4ed8">🔌 Précisions sur votre borne de recharge</h3>
+            <div class="space-y-4">
+
+              <div>
+                <label>Contexte d'installation</label>
+                <div class="grid grid-cols-2 gap-2">
+                  <label class="radio-card-sm"><input type="radio" name="borne_contexte" value="Maison unifamiliale"><span>🏠 Maison / garage privé</span></label>
+                  <label class="radio-card-sm"><input type="radio" name="borne_contexte" value="Condo"><span>🏢 Condo / appartement</span></label>
+                  <label class="radio-card-sm"><input type="radio" name="borne_contexte" value="Multilogement"><span>🏗️ Multilogement</span></label>
+                  <label class="radio-card-sm"><input type="radio" name="borne_contexte" value="Commercial"><span>🏪 Commerce / flotte</span></label>
+                </div>
+              </div>
+
+              <div>
+                <label>Nombre de bornes souhaitées</label>
+                <select name="borne_quantite">
+                  <option value="1">1 borne</option>
+                  <option value="2">2 bornes</option>
+                  <option value="3-5">3 à 5 bornes</option>
+                  <option value="6-20">6 à 20 bornes</option>
+                  <option value="20+">Plus de 20 bornes (projet majeur)</option>
+                </select>
+              </div>
+
+              <!-- Multilogement : nombre d'unités -->
+              <div id="blocBorneUnites" class="hidden">
+                <label>Nombre d'unités de logement dans l'immeuble</label>
+                <input type="number" name="borne_nb_unites" min="2" max="500" placeholder="Ex: 24 unités">
+              </div>
+
+              <!-- Commercial : usage -->
+              <div id="blocBorneCommercial" class="hidden">
+                <label>Type d'usage commercial</label>
+                <select name="borne_usage_commercial">
+                  <option value="">— Sélectionnez —</option>
+                  <option value="Stationnement public">Stationnement public / commercial</option>
+                  <option value="Flotte entreprise">Flotte de véhicules d'entreprise</option>
+                  <option value="Employés">Recharge pour employés</option>
+                  <option value="Mixte">Usage mixte (clients + employés)</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Consommation : un seul dropdown -->
+        <div class="mb-5" id="blocConso">
+          <label>Consommation électrique annuelle</label>
+          <select name="hq_consommation_bracket">
+            <option value="">— Sélectionnez —</option>
+            <option value="< 100 $/mois (~10 000 kWh/an)">Moins de 100 $/mois (~10 000 kWh/an)</option>
+            <option value="100-200 $/mois (10-20 000 kWh/an)">100 à 200 $/mois (10 000 – 20 000 kWh/an)</option>
+            <option value="200-300 $/mois (20-30 000 kWh/an)">200 à 300 $/mois (20 000 – 30 000 kWh/an)</option>
+            <option value="300-500 $/mois (30-50 000 kWh/an)">300 à 500 $/mois (30 000 – 50 000 kWh/an)</option>
+            <option value="500+ $/mois (50 000+ kWh/an)">Plus de 500 $/mois (50 000+ kWh/an)</option>
+            <option value="Ne sais pas">Je ne sais pas</option>
+          </select>
+          <p class="text-xs text-slate-500 mt-1">Approximation suffisante — votre facture Hydro nous donnera le détail. (Base : tarif D résidentiel ≈ 0,10 $/kWh.)</p>
+        </div>
+
+        <!-- Délai prévu — qualification lead -->
+        <div class="mb-5">
+          <label class="req">Délai prévu pour votre projet</label>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <label class="radio-card-sm"><input type="radio" name="projet_delai" value="0-3 mois" required><span>🚀 Moins de 3 mois</span></label>
+            <label class="radio-card-sm"><input type="radio" name="projet_delai" value="3-6 mois"><span>📅 3 à 6 mois</span></label>
+            <label class="radio-card-sm"><input type="radio" name="projet_delai" value="6-12 mois"><span>🗓️ 6 à 12 mois</span></label>
+            <label class="radio-card-sm"><input type="radio" name="projet_delai" value="Exploration"><span>🔍 Je magasine</span></label>
+          </div>
+        </div>
+
+        <div>
+          <label>Notes / précisions</label>
+          <textarea name="projet_notes" rows="4" placeholder="Toiture, échéancier, contraintes particulières, questions spécifiques..."></textarea>
+        </div>
       </section>
+
+      <!-- 4. DOCUMENTS & PHOTOS -->
       <section>
-        <h2 class="text-xl font-bold mb-1 flex items-center"><span class="section-icon">4</span>Documents & photos</h2>
+        <h2 class="text-xl font-bold mb-1 flex items-center"><span class="section-icon">4</span>Documents &amp; photos</h2>
+        <p class="text-sm text-slate-500 mb-5 ml-11">Plus on a d'info, plus la soumission est précise. <strong>Aucune obligation</strong> — vous pouvez envoyer après.</p>
+
+        <!-- BLOC EXISTANT -->
         <div id="blocExistant" class="space-y-4">
-          <div class="upload-box"><label>📄 Facture Hydro-Québec</label><input type="file" name="doc_facture_hq" accept=".pdf,.jpg,.jpeg,.png" multiple></div>
-          <div class="upload-box"><label>📸 Photos du panneau électrique</label><input type="file" name="photos_panneau" accept="image/*,.pdf" multiple></div>
-          <div class="upload-box"><label>📸 Photos du compteur</label><input type="file" name="photos_compteur" accept="image/*,.pdf" multiple></div>
-          <div class="upload-box"><label>📸 Photos de l'emplacement</label><input type="file" name="photos_emplacement" accept="image/*,.pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx" multiple>
+
+          <div class="upload-box" id="blocFactureHQ">
+            <label class="font-bold text-sm text-slate-700">📄 Facture Hydro-Québec (PDF ou image)</label>
+            <p class="text-xs text-slate-500 mb-2">Idéalement les 12 derniers mois.</p>
+            <input type="file" name="doc_facture_hq" id="factureHQ" accept=".pdf,.jpg,.jpeg,.png" multiple>
+          </div>
+
+          <div class="upload-box">
+            <label class="font-bold text-sm text-slate-700">📸 Photos du panneau électrique</label>
+            <p class="text-xs text-slate-500 mb-2">Vue rapprochée + vue d'ensemble (porte ouverte si possible).</p>
+            <input type="file" name="photos_panneau" accept="image/*,.pdf" multiple>
+          </div>
+
+          <div class="upload-box">
+            <label class="font-bold text-sm text-slate-700">📸 Photos du compteur électrique</label>
+            <p class="text-xs text-slate-500 mb-2">Vue rapprochée + vue d'ensemble (entrée électrique extérieure).</p>
+            <input type="file" name="photos_compteur" accept="image/*,.pdf" multiple>
+          </div>
+
+          <div class="upload-box">
+            <label class="font-bold text-sm text-slate-700">📸 Photos de l'emplacement d'installation</label>
+            <p class="text-xs text-slate-500 mb-2">Toiture, mur, cour, garage, stationnement... oõ vont les équipements.</p>
+            <input type="file" name="photos_emplacement" accept="image/*,.pdf" multiple>
           </div>
         </div>
+
+        <!-- BLOC CONSTRUCTION NEUVE -->
         <div id="blocNeuf" class="space-y-4 hidden">
-          <div class="upload-box"><label>📐 Plans de construction</label><input type="file" name="doc_plans" accept=".pdf,.jpg,.jpeg,.png,.dwg" multiple></div>
-          <div class="upload-box"><label>📎 Autres pièces justificatives</label><input type="file" name="doc_autres" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx" multiple></div>
-        </div>
-      </section>
+          <div class="upload-box">
+            <label class="font-bold text-sm text-slate-700">📐 Plans de construction</label>
+            <p class="text-xs text-slate-500 mb-2">Plans architecturaux, électriques, mécaniques (PDF ou images).</p>
+            <input type="file" name="doc_plans" accept=".pdf,.jpg,.jpeg,.png,.dwg" multiple>
+          </div>
 
-      <!-- 5. BUDGET ESTIMÉ -->
-      <section id="budgetEstimation" class="hidden">
-        <h2 class="text-xl font-bold mb-1 flex items-center"><span class="section-icon">💰</span>Budget estimé</h2>
-        <p class="text-sm text-slate-500 mb-4 ml-11">Estimation automatique basée sur vos sélections.</p>
-        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5">
-          <div class="flex items-center justify-between">
-            <span class="text-slate-600 font-medium">Budget estimé :</span>
-            <span id="budgetDisplay" class="text-2xl font-black text-blue-700">-</span>
-          </div>
-          <p class="text-xs text-slate-400 mt-2">Estimation préliminaire — la soumission définitive peut différer selon l'inspection terrain.</p>
-        </div>
-      </section>
-
-      <!-- 6. PARTENAIRES -->
-      <section>
-        <h2 class="text-xl font-bold mb-3 flex items-center"><span class="section-icon">5</span>Équipements et partenaires</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-100 bg-white shadow-sm">
-            <img src="tesla-powerwall.svg" alt="Tesla Powerwall" class="h-10 w-auto mb-2 object-contain">
-            <span class="text-xs font-semibold text-slate-500">Tesla Powerwall</span>
-          </div>
-          <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-100 bg-white shadow-sm">
-            <img src="sigenergy.png" alt="Sigenergy" class="h-10 w-auto mb-2 object-contain">
-            <span class="text-xs font-semibold text-slate-500">Sigenergy</span>
-          </div>
-          <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-100 bg-white shadow-sm">
-            <img src="fox-ess.webp" alt="Fox ESS" class="h-10 w-auto mb-2 object-contain">
-            <span class="text-xs font-semibold text-slate-500">Fox ESS</span>
-          </div>
-          <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-100 bg-white shadow-sm">
-            <img src="financeit.svg" alt="Financeit" class="h-10 w-auto mb-2 object-contain">
-            <span class="text-xs font-semibold text-slate-500">Financeit</span>
+          <div class="upload-box">
+            <label class="font-bold text-sm text-slate-700">📎 Autres pièces justificatives</label>
+            <p class="text-xs text-slate-500 mb-2">Devis, spécifications, fiches techniques... toute info utile au devis.</p>
+            <input type="file" name="doc_autres" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx" multiple>
           </div>
         </div>
+
+        <p class="text-xs text-slate-400 mt-3 italic">📦 Vous pouvez sélectionner plusieurs fichiers à la fois. Max ~10 Mo par fichier.</p>
       </section>
 
-      <!-- SUBMIT -->
-      <div class="pt-2">
-        <button type="submit" class="btn-primary w-full text-white font-bold py-5 px-8 rounded-2xl text-lg" id="submitBtn">Obtenir ma soumission gratuite →</button>
-        <p class="text-center text-xs text-slate-400 mt-3">En soumettant, vous acceptez d'être contacté par Raycom Électrique. Aucun engagement.</p>
+      <!-- ESTIMATION BUDGÉTAIRE — affichée dynamiquement avant soumission -->
+      <div id="budgetEstimation" class="hidden rounded-2xl overflow-hidden" style="border:2px solid #1e7fd6;">
+        <div style="background:linear-gradient(135deg,#0a1b3d,#1e7fd6);padding:1rem 1.5rem;" class="flex items-center justify-between">
+          <div class="text-white font-bold text-base">💰 Estimation budgétaire</div>
+          <div class="text-xs text-blue-200 font-medium">Basée sur vos choix</div>
+        </div>
+        <div style="background:#f0f6ff;padding:1.25rem 1.5rem;">
+
+          <!-- Fourchette min–max -->
+          <div class="flex items-baseline gap-3 mb-1">
+            <span class="text-4xl font-black" style="color:#0a1b3d;" id="budgetMin">—</span>
+            <span class="text-xl font-bold text-slate-400">à</span>
+            <span class="text-4xl font-black" style="color:#1e7fd6;" id="budgetMax">—</span>
+          </div>
+          <p class="text-xs text-slate-500 mb-3" id="budgetNote">Sélectionnez vos composantes pour voir l'estimation.</p>
+
+          <!-- Détails par composante -->
+          <div class="grid grid-cols-2 gap-2 mb-3" id="budgetDetails"></div>
+
+          <!-- BLOC SUBVENTIONS — affiché si solaire + résidentiel/multilogement -->
+          <div id="blocSubventions" class="hidden mb-3 p-3 rounded-xl" style="background:#f0fdf4;border:1.5px solid #86efac;">
+            <div class="font-bold text-sm mb-2" style="color:#166534">🌿 Incitatifs gouvernementaux estimés</div>
+            <div class="space-y-1">
+              <div class="subsidy-row" style="border-color:#bbf7d0">
+                <span style="color:#4b5563">Coût brut (avant incitatifs) :</span>
+                <span class="font-semibold" style="color:#1f2937" id="subsidyCoutBrut">—</span>
+              </div>
+              <div class="subsidy-row" style="border-color:#bbf7d0">
+                <span style="color:#15803d" id="subsidyLabel1">− Incitatifs résidentiels estimés :</span>
+                <span class="font-semibold" style="color:#15803d" id="subsidyMontant1">—</span>
+              </div>
+              <div class="subsidy-row" style="border-bottom:none;margin-top:.25rem">
+                <span style="color:#14532d;font-weight:700">Coût net estimé :</span>
+                <span style="color:#14532d;font-weight:700;font-size:1rem" id="subsidyCoutNet">—</span>
+              </div>
+            </div>
+            <p class="legal-note mt-2">* Montants estimatifs basés sur programmes fédéraux/provinciaux disponibles. Sous réserve d'admissibilité. Consultez nos experts.</p>
+          </div>
+
+          <!-- BADGE FINANCEMENT FINANCEIT -->
+          <div id="financingBadge" class="hidden financing-badge">
+            <img src="financeit.svg" alt="Financeit" style="height:20px;opacity:.85;filter:brightness(2)">
+            <div class="flex-1">
+              <div class="text-white text-sm font-bold">Financement disponible — <span id="financingMonthly">—</span>/mois*</div>
+              <div class="text-blue-300 text-xs">84 mois · 6,99 %* · Sous réserve d'approbation de crédit Financeit</div>
+            </div>
+          </div>
+
+          <p class="legal-note mt-3">⚠️ Estimation indicative avant inspection technique. Prix réels peuvent varier. La soumission officielle est gratuite et sans engagement.</p>
+        </div>
       </div>
 
+      <div class="pt-2">
+        <button type="submit" id="submitBtn" class="btn-primary w-full text-white font-bold text-lg py-4 rounded-xl uppercase tracking-wide">
+          Obtenir ma soumission gratuite →
+        </button>
+        <p class="text-xs text-slate-500 text-center mt-3">
+          🔒 Vos informations restent confidentielles. Aucun engagement.
+        </p>
+      </div>
     </form>
+
+    <!-- MESSAGE DE SUCCÈS -->
+    <div id="successMsg" class="hidden text-center py-8">
+      <div class="text-6xl mb-4">✅</div>
+      <h2 class="text-3xl font-black mb-2" style="color:#0a1b3d">Merci<span id="successName"></span> !</h2>
+      <p class="text-slate-600 text-base mb-1">Votre demande de soumission a bien été reçue.</p>
+      <p class="text-slate-500 text-sm mb-5">Un expert Raycom analysera votre projet et vous contactera sous peu.</p>
+
+      <!-- Budget affiché si disponible -->
+      <div id="successBudgetBloc" class="hidden mb-6">
+        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-2">Votre estimation budgétaire</p>
+        <div class="flex items-center justify-center gap-3">
+          <span class="success-budget-pill"><span id="successBudgetMin">—</span></span>
+          <span class="text-slate-400 font-bold">à</span>
+          <span class="success-budget-pill" style="color:#1e7fd6;border-color:#1e7fd6;background:#e6f0fa"><span id="successBudgetMax">—</span></span>
+        </div>
+        <p class="text-xs text-slate-400 mt-2 italic">Estimation avant inspection et subventions</p>
+      </div>
+
+      <!-- Prochaines étapes -->
+      <div class="bg-blue-50 border-l-4 border-blue-500 rounded-xl p-5 max-w-xl mx-auto text-left mb-6">
+        <p class="font-bold text-slate-800 mb-3">📋 Ce qui se passe maintenant :</p>
+        <ul class="text-slate-700 text-sm space-y-2">
+          <li class="flex gap-2"><span class="text-blue-500 font-bold">1.</span><span>Vous recevrez un <strong>courriel et un texto de confirmation</strong> dans les prochaines minutes.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500 font-bold">2.</span><span>Nos experts analysent votre projet et préparent un <strong>devis personnalisé sous 24–48 h ouvrables</strong>.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500 font-bold">3.</span><span>Une <strong>visite technique gratuite</strong> sera planifiée pour finaliser la soumission.</span></li>
+        </ul>
+      </div>
+
+      <!-- CTA contact urgent -->
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="tel:+14504748470" class="btn-primary inline-flex items-center gap-2 text-white font-bold py-3 px-6 rounded-xl no-underline text-sm">
+          📞 Appeler : 450-474-8470
+        </a>
+        <a href="sms:+14388016401" style="background:#f0f6ff;border:1.5px solid #1e7fd6;color:#1e7fd6;" class="inline-flex items-center gap-2 font-bold py-3 px-6 rounded-xl no-underline text-sm">
+          💬 Écrire : 438-801-6401
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Partenaires -->
+  <div class="card mt-8 p-6">
+    <p class="text-center text-xs uppercase tracking-widest text-slate-500 font-bold mb-5">Nos partenaires &amp; marques installées</p>
+    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+      <img src="tesla-powerwall.svg" alt="Tesla Powerwall Certified Installer" class="h-14 w-auto opacity-90 hover:opacity-100 transition">
+      <img src="sigenergy.png" alt="Sigenergy" class="h-10 w-auto opacity-80 hover:opacity-100 transition">
+      <img src="fox-ess.webp" alt="Fox ESS" class="h-10 w-auto opacity-80 hover:opacity-100 transition">
+      <img src="financeit.svg" alt="Financeit" class="h-10 w-auto opacity-90 hover:opacity-100 transition">
+    </div>
+  </div>
+
+  <div class="text-center mt-8 text-sm text-slate-500">
+    <strong style="color:#0a1b3d">Raycom Électrique inc.</strong> · RBQ 5590-9402 · <a class="link-blue" href="https://www.raycomelectrique.com">raycomelectrique.com</a><br>
+    📞 450-474-8470 · 💬 Texto 438-801-6401<br>
+    Électricité • Solaire • Stockage • Bornes VÉ<br>
+    <span class="text-xs text-slate-400 mt-1 block">* Financement sous réserve d'approbation de crédit par Financeit. Taux illustratif — taux réel selon profil emprunteur. Incitatifs gouvernementaux sous réserve d'admissibilité.</span>
   </div>
 </main>
 
-<footer class="bg-navy text-white py-8 mt-8" style="background:#0a1b3d">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <p class="font-bold text-lg mb-1">Raycom Électrique inc.</p>
-    <p class="text-blue-200 text-sm">3321 Ave de la Gare #112, Mascouche, QC J7K 0X7</p>
-    <p class="text-blue-200 text-sm mt-1"><a href="tel:+14504748470" class="hover:text-white">450-474-8470</a> | <a href="mailto:info@raycomelectrique.com" class="hover:text-white">info@raycomelectrique.com</a></p>
-    <p class="text-blue-300 text-xs mt-3">RBQ 5590-9402-01 | © 2025 Raycom Électrique inc.</p>
-  </div>
-</footer>
-
 <script>
-const WORKER_URL = 'https://raycom-soumission.proud-leaf-b313.workers.dev/submit';
-const MAKE_WEBHOOK = 'https://hook.us2.make.com/kw4lf4m19kxmsgqb3a4n9f5pjfn6ncor';
+const WEBHOOK_URL = "https://hook.us2.make.com/8x27ox78k2zs8iq9h9q9we7dtcq75rvd";
+const WORKER_URL  = 'https://raycom-soumission.proud-leaf-b313.workers.dev/submit';
 
-const PRIX_BASE = {
-  'Panneaux solaires': 35000, 'Batterie de stockage': 14000,
-  'Borne de recharge VÉ': 3500, 'Travaux électriques': 7500,
-  'Génératrice': 8000, 'Inspection / Diagnostic': 500
-};
-const MULT_SEGMENT = { 'Résidentiel': 1.0, 'Commercial': 2.8, 'Multilogement': 2.2, 'Municipal': 3.5, 'Agricole': 2.0 };
-const MULT_CONSO = {
-  '< 100 $/mois (~10 000 kWh/an)': 0.75, '100-200 $/mois (10-20 000 kWh/an)': 1.00,
-  '200-300 $/mois (20-30 000 kWh/an)': 1.35, '300-500 $/mois (30-50 000 kWh/an)': 1.70,
-  '500+ $/mois (50 000+ kWh/an)': 2.20
-};
+// ── Format téléphone ──────────────────────────────────────────────────────────
+document.getElementById('phone').addEventListener('input', e=>{
+  let v = e.target.value.replace(/\D/g,'').slice(0,10);
+  if(v.length>6) v = v.slice(0,3)+' '+v.slice(3,6)+'-'+v.slice(6);
+  else if(v.length>3) v = v.slice(0,3)+' '+v.slice(3);
+  e.target.value = v;
+});
 
-function calcBudget() {
-  const form = document.getElementById('raycomForm');
-  const composantes = Array.from(form.querySelectorAll('input[name=composantes]:checked')).map(c => c.value);
-  const segment = form.querySelector('[name=projet_segment]')?.value || 'Résidentiel';
-  const conso = form.querySelector('[name=hq_consommation_bracket]')?.value || '';
-  const nature = form.querySelector('input[name=projet_nature]:checked')?.value || 'Existant';
-  if (!composantes.length) return null;
-  if (nature === 'Construction neuve') return Math.round((MULT_SEGMENT[segment]||1)*50000/500)*500;
-  const hasSol = composantes.includes('Panneaux solaires');
-  let total = 0;
-  for (const c of composantes) {
-    const base = PRIX_BASE[c] || 2000;
-    total += (c === 'Panneaux solaires') ? base * (MULT_CONSO[conso]||1) : base;
-  }
-  if (hasSol && composantes.includes('Batterie de stockage')) total += 5000;
-  return Math.round(total * (MULT_SEGMENT[segment]||1) / 500) * 500;
-}
+// ── Format code postal ────────────────────────────────────────────────────────
+document.getElementById('postal').addEventListener('input', e=>{
+  let v = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);
+  if(v.length>3) v = v.slice(0,3)+' '+v.slice(3);
+  e.target.value = v;
+});
 
-function updateBudget() {
-  const val = calcBudget();
-  const section = document.getElementById('budgetEstimation');
-  const display = document.getElementById('budgetDisplay');
-  if (val) {
-    section.classList.remove('hidden');
-    display.textContent = val.toLocaleString('fr-CA') + ' $';
-    document.getElementById('raycomForm').dataset.budgetEstime = val;
+// ── Refs ──────────────────────────────────────────────────────────────────────
+const form              = document.getElementById('raycomForm');
+const bar               = document.getElementById('progressBar');
+const blocExistant      = document.getElementById('blocExistant');
+const blocNeuf          = document.getElementById('blocNeuf');
+const blocFactureHQ     = document.getElementById('blocFactureHQ');
+const blocConso         = document.getElementById('blocConso');
+const blocBorne         = document.getElementById('blocBorne');
+const blocBorneUnites   = document.getElementById('blocBorneUnites');
+const blocBorneCommercial = document.getElementById('blocBorneCommercial');
+const composantesInputs = document.querySelectorAll('input[name="composantes"]');
+const natureRadios      = document.querySelectorAll('input[name="projet_nature"]');
+
+// ── Logique conditionnelle principale ─────────────────────────────────────────
+function refreshBlocs(){
+  const nature      = document.querySelector('input[name="projet_nature"]:checked').value;
+  const composantes = Array.from(composantesInputs).filter(i=>i.checked).map(i=>i.value);
+  const onlyBorne   = composantes.length===1 && composantes[0]==='Borne de recharge VÉ';
+  const hasBorne    = composantes.includes('Borne de recharge VÉ');
+  const hasSolaire  = composantes.includes('Panneaux solaires');
+
+  // Documents selon nature
+  if(nature==='Construction neuve'){
+    blocExistant.classList.add('hidden');
+    blocNeuf.classList.remove('hidden');
+    blocConso.classList.add('hidden');
   } else {
-    section.classList.add('hidden');
-    delete document.getElementById('raycomForm').dataset.budgetEstime;
-  }
-}
-
-document.querySelectorAll('input[name=composantes], [name=projet_segment], [name=hq_consommation_bracket], input[name=projet_nature]')
-  .forEach(el => el.addEventListener('change', updateBudget));
-
-const nature = document.querySelectorAll('input[name=projet_nature]');
-nature.forEach(r => r.addEventListener('change', () => {
-  const isNeuf = r.value === 'Construction neuve' && r.checked;
-  document.getElementById('blocExistant').classList.toggle('hidden', isNeuf);
-  document.getElementById('blocNeuf').classList.toggle('hidden', !isNeuf);
-  updateBudget();
-}));
-
-const fields = document.querySelectorAll('input[required], select[required]');
-function updateProgress() {
-  const filled = Array.from(fields).filter(f => f.value.trim()).length;
-  document.getElementById('progressBar').style.width = Math.round(filled / fields.length * 100) + '%';
-}
-fields.forEach(f => f.addEventListener('input', updateProgress));
-
-async function uploadFile(file) {
-  const fd = new FormData();
-  fd.append('file', file);
-  try {
-    const r = await fetch('https://catbox.moe/user/api.php', { method: 'POST', body: fd });
-    return r.ok ? await r.text() : null;
-  } catch { return null; }
-}
-
-document.getElementById('raycomForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.innerHTML = 'Envoi en cours…';
-
-  const fd = new FormData(form);
-  const composantes = fd.getAll('composantes');
-
-  const fileFields = ['doc_facture_hq','photos_panneau','photos_compteur','photos_emplacement','doc_plans','doc_autres'];
-  const uploadedUrls = {};
-  for (const field of fileFields) {
-    const files = Array.from(form.querySelectorAll(`[name=${field}]`)).flatMap(i => Array.from(i.files || []));
-    if (files.length) {
-      const urls = await Promise.all(files.map(uploadFile));
-      uploadedUrls[field] = urls.filter(Boolean).join(' | ');
+    blocExistant.classList.remove('hidden');
+    blocNeuf.classList.add('hidden');
+    blocConso.classList.remove('hidden');
+    if(onlyBorne){
+      blocFactureHQ.classList.add('hidden');
+      blocConso.classList.add('hidden');
+    } else {
+      blocFactureHQ.classList.remove('hidden');
+      if(hasSolaire || composantes.includes('Batterie de stockage')){
+        blocConso.classList.remove('hidden');
+      } else {
+        blocConso.classList.add('hidden');
+      }
     }
   }
 
+  // Borne section
+  if(hasBorne){
+    blocBorne.classList.remove('hidden');
+  } else {
+    blocBorne.classList.add('hidden');
+  }
+}
+
+// ── Logique borne contexte ────────────────────────────────────────────────────
+function refreshBorneContexte(){
+  const ctx = document.querySelector('input[name="borne_contexte"]:checked');
+  const val = ctx ? ctx.value : '';
+  blocBorneUnites.classList.toggle('hidden', val !== 'Multilogement');
+  blocBorneCommercial.classList.toggle('hidden', val !== 'Commercial');
+}
+
+document.querySelectorAll('input[name="borne_contexte"]').forEach(r =>
+  r.addEventListener('change', refreshBorneContexte)
+);
+natureRadios.forEach(r => r.addEventListener('change', ()=>{ refreshBlocs(); calcBudget(); }));
+composantesInputs.forEach(c => c.addEventListener('change', ()=>{ refreshBlocs(); calcBudget(); }));
+refreshBlocs();
+
+// ── Progress bar ──────────────────────────────────────────────────────────────
+function updateProgress(){
+  const required = form.querySelectorAll('[required]');
+  let filled = 0;
+  required.forEach(f=>{ if(f.value && f.value.trim()) filled++; });
+  bar.style.width = Math.round((filled/required.length)*100)+'%';
+}
+form.addEventListener('input', updateProgress);
+form.addEventListener('change', updateProgress);
+
+// ── MATRICES — identiques au worker ──────────────────────────────────────────
+const PRIX_BASE_FORM = {
+  'Panneaux solaires':       35000,
+  'Batterie de stockage':    14000,
+  'Borne de recharge VÉ':    3500,
+  'Travaux électriques':     7500,
+  'Génératrice':             8000,
+  'Inspection / Diagnostic': 500,
+};
+const MULT_SEGMENT_FORM = {
+  'Résidentiel': 1.0, 'Commercial': 2.8, 'Multilogement': 2.2,
+  'Municipal':   3.5, 'Agricole':   2.0,
+};
+const MULT_CONSO_FORM = {
+  '< 100 $/mois (~10 000 kWh/an)':        0.75,
+  '100-200 $/mois (10-20 000 kWh/an)':    1.00,
+  '200-300 $/mois (20-30 000 kWh/an)':    1.35,
+  '300-500 $/mois (30-50 000 kWh/an)':    1.70,
+  '500+ $/mois (50 000+ kWh/an)':         2.20,
+};
+
+// Subventions estimées par segment (résidentiel et multilogement seulement)
+const SUBSIDY_EST = {
+  'Résidentiel':    { label: '− Incitatifs résidentiels estimés :', montant: 2500 },
+  'Multilogement':  { label: '− Incitatifs multilogement estimés :', montant: 5000 },
+};
+
+function fmt(n){ return n.toLocaleString('fr-CA',{minimumFractionDigits:0,maximumFractionDigits:0})+' $'; }
+
+// Financeit : 6.99 % / 84 mois
+function calcFinanceit(amount){
+  const r = 0.0699 / 12;
+  const n = 84;
+  const factor = r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
+  return Math.ceil(amount * factor / 10) * 10;
+}
+
+// ── CALCULATEUR BUDGET ────────────────────────────────────────────────────────
+function calcBudget(){
+  const fd          = new FormData(form);
+  const composantes = fd.getAll('composantes');
+  const segment     = fd.get('projet_segment') || 'Résidentiel';
+  const conso       = fd.get('hq_consommation_bracket') || '';
+  const nature      = fd.get('projet_nature') || 'Existant';
+  const budgetEl    = document.getElementById('budgetEstimation');
+  const hasSolaire  = composantes.includes('Panneaux solaires');
+
+  if(composantes.length === 0 && nature !== 'Construction neuve'){
+    budgetEl.classList.add('hidden');
+    return;
+  }
+
+  let central = 0;
+  const details = [];
+
+  if(nature === 'Construction neuve'){
+    const mult = MULT_SEGMENT_FORM[segment] || 1.0;
+    central = Math.round(mult * 50000 / 500) * 500;
+    details.push({label:'Installation complète', val:central});
+  } else {
+    const hasBatterie = composantes.includes('Batterie de stockage');
+    const multSeg     = MULT_SEGMENT_FORM[segment] || 1.0;
+    const multConso   = hasSolaire ? (MULT_CONSO_FORM[conso] || 1.0) : 1.0;
+
+    for(const c of composantes){
+      const base = PRIX_BASE_FORM[c] || 2000;
+      const val  = Math.round((c === 'Panneaux solaires' ? base * multConso : base) * multSeg / 500) * 500;
+      details.push({label:c, val});
+      central += val;
+    }
+    if(hasSolaire && hasBatterie){
+      const bonus = Math.round(5000 * multSeg / 500) * 500;
+      central += bonus;
+      details.push({label:'Câblage / Onduleur (combinaison)', val:bonus});
+    }
+  }
+
+  // Fourchette ±18-20%
+  const minVal = Math.round(central * 0.82 / 500) * 500;
+  const maxVal = Math.round(central * 1.20 / 500) * 500;
+
+  document.getElementById('budgetMin').textContent = fmt(minVal);
+  document.getElementById('budgetMax').textContent = fmt(maxVal);
+
+  const segNote  = segment !== 'Résidentiel' ? ` (${segment.toLowerCase()})` : '';
+  const consoNote= conso && conso !== 'Ne sais pas' ? ` • conso ${conso.split('(')[0].trim()}` : '';
+  document.getElementById('budgetNote').textContent =
+    `Estimation pour votre projet${segNote}${consoNote}. Avant subventions.`;
+
+  document.getElementById('budgetDetails').innerHTML = details.map(d=>`
+    <div style="background:#fff;border:1px solid #dbe3ef;border-radius:8px;padding:.5rem .75rem;font-size:.8rem;">
+      <div style="color:#555;font-weight:500;">${d.label}</div>
+      <div style="color:#0a1b3d;font-weight:700;">${fmt(d.val)}</div>
+    </div>`).join('');
+
+  // ── Subventions (solaire + segment éligible) ──
+  const subsidy    = SUBSIDY_EST[segment];
+  const blocSubv   = document.getElementById('blocSubventions');
+  if(hasSolaire && subsidy){
+    const sNet = Math.max(0, central - subsidy.montant);
+    document.getElementById('subsidyCoutBrut').textContent = fmt(central);
+    document.getElementById('subsidyLabel1').textContent   = subsidy.label;
+    document.getElementById('subsidyMontant1').textContent = '−' + fmt(subsidy.montant);
+    document.getElementById('subsidyCoutNet').textContent  = fmt(sNet);
+    blocSubv.classList.remove('hidden');
+  } else {
+    blocSubv.classList.add('hidden');
+  }
+
+  // ── Financement Financeit ──
+  const finBadge = document.getElementById('financingBadge');
+  if(central >= 5000){
+    const monthly = calcFinanceit(central);
+    document.getElementById('financingMonthly').textContent = fmt(monthly).replace(' $','') + ' $';
+    finBadge.classList.remove('hidden');
+  } else {
+    finBadge.classList.add('hidden');
+  }
+
+  budgetEl.classList.remove('hidden');
+  form.dataset.budgetEstime = String(central);
+}
+
+// Déclencher à chaque changement
+composantesInputs.forEach(c => c.addEventListener('change', calcBudget));
+natureRadios.forEach(r => r.addEventListener('change', calcBudget));
+document.getElementById('projet_segment').addEventListener('change', calcBudget);
+form.querySelector('[name=hq_consommation_bracket]').addEventListener('change', calcBudget);
+
+// ── Upload fichiers → tmpfiles.org ────────────────────────────────────────────
+async function uploadOne(file){
+  const fd = new FormData();
+  fd.append('file', file);
+  const res = await fetch('https://tmpfiles.org/api/v1/upload', {method:'POST', body:fd});
+  if(!res.ok) throw new Error('HTTP ' + res.status);
+  const json = await res.json();
+  if(!json?.data?.url) throw new Error('réponse invalide');
+  return json.data.url.replace('tmpfiles.org/', 'tmpfiles.org/dl/').replace('/dl/dl/','/dl/');
+}
+async function filesToUrls(fileList){
+  if(!fileList || fileList.length === 0) return '';
+  const out = [];
+  for(const f of fileList){
+    try{
+      const url = await uploadOne(f);
+      out.push(`${f.name} (${(f.size/1024/1024).toFixed(2)} Mo): ${url}`);
+    }catch(e){
+      out.push(`${f.name}: ÉCHEC UPLOAD - ${e.message}`);
+    }
+  }
+  return out.join(' | ');
+}
+
+// ── Soumission du formulaire ──────────────────────────────────────────────────
+form.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = 'Envoi en cours... ⏳';
+
+  const fd          = new FormData(form);
+  const composantes = fd.getAll('composantes');
+  const firstName   = fd.get('firstName') || '';
+
   const payload = {
-    'First name': fd.get('firstName'),
-    'Last name': fd.get('lastName'),
-    'Email': fd.get('email'),
-    'Phone': fd.get('phone'),
-    'Address': fd.get('address1'),
-    'City': fd.get('city'),
-    'State': fd.get('state'),
-    'Postal code': fd.get('postalCode'),
-    'Country': 'CA',
-    projet_segment: fd.get('projet_segment'),
-    projet_nature: fd.get('projet_nature'),
-    projet_composantes: composantes,
-    projet_composantes_str: composantes.join(', '),
-    hq_consommation_bracket: fd.get('hq_consommation_bracket'),
-    projet_notes: fd.get('projet_notes'),
-    budget_estime: form.dataset.budgetEstime || null,
-    source: 'Formulaire web',
-    submitted_at: new Date().toISOString(),
-    ...uploadedUrls
+    "First name":              firstName,
+    "Last name":               fd.get('lastName'),
+    "Email":                   fd.get('email'),
+    "Phone":                   fd.get('phone'),
+    "Address":                 fd.get('address1'),
+    "City":                    fd.get('city'),
+    "State":                   fd.get('state'),
+    "Postal code":             fd.get('postalCode'),
+    "Country":                 'CA',
+    "projet_segment":          fd.get('projet_segment'),
+    "projet_nature":           fd.get('projet_nature'),
+    "projet_composantes":      composantes,
+    "projet_composantes_str":  composantes.join(', '),
+    "hq_consommation_bracket": fd.get('hq_consommation_bracket') || null,
+    "projet_notes":            fd.get('projet_notes'),
+    "projet_delai":            fd.get('projet_delai'),
+    "borne_contexte":          fd.get('borne_contexte') || null,
+    "borne_quantite":          fd.get('borne_quantite') || null,
+    "borne_nb_unites":         fd.get('borne_nb_unites') || null,
+    "borne_usage_commercial":  fd.get('borne_usage_commercial') || null,
+    "budget_estime":           form.dataset.budgetEstime || null,
+    "source":                  'formulaire-raycom-services',
+    "submitted_at":            new Date().toISOString()
   };
 
-  try {
-    const [r1] = await Promise.allSettled([
-      fetch(WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }),
-      fetch(MAKE_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
+  // Uploads fichiers
+  try{
+    payload["doc_facture_hq"]     = await filesToUrls(document.querySelector('[name=doc_facture_hq]').files);
+    payload["photos_panneau"]     = await filesToUrls(document.querySelector('[name=photos_panneau]').files);
+    payload["photos_compteur"]    = await filesToUrls(document.querySelector('[name=photos_compteur]').files);
+    payload["photos_emplacement"] = await filesToUrls(document.querySelector('[name=photos_emplacement]').files);
+    payload["doc_plans"]          = await filesToUrls(document.querySelector('[name=doc_plans]').files);
+    payload["doc_autres"]         = await filesToUrls(document.querySelector('[name=doc_autres]').files);
+  }catch(err){ console.error(err); }
+
+  try{
+    await Promise.allSettled([
+      fetch(WORKER_URL, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      }),
+      fetch(WEBHOOK_URL, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      })
     ]);
-    if (r1.status === 'fulfilled' && r1.value.ok) {
-      form.innerHTML = '<div class="text-center py-16"><div class="text-5xl mb-6">✅</div><h2 class="text-2xl font-bold text-navy mb-3">Demande reçue !</h2><p class="text-slate-500">Notre équipe vous contacte sous 24h ouvrables.</p></div>';
-    } else throw new Error('worker_error');
-  } catch {
+
+    // ── Succès — personnaliser le message ──
+    const successEl = document.getElementById('successMsg');
+    document.getElementById('successName').textContent = firstName ? `, ${firstName}` : '';
+
+    const budgetMin = document.getElementById('budgetMin').textContent;
+    const budgetMax = document.getElementById('budgetMax').textContent;
+    if(form.dataset.budgetEstime && budgetMin !== '—'){
+      document.getElementById('successBudgetMin').textContent = budgetMin;
+      document.getElementById('successBudgetMax').textContent = budgetMax;
+      document.getElementById('successBudgetBloc').classList.remove('hidden');
+    }
+
+    form.classList.add('hidden');
+    successEl.classList.remove('hidden');
+    window.scrollTo({top:0, behavior:'smooth'});
+
+  }catch(err){
     alert('Erreur lors de l\'envoi. Réessayez ou appelez-nous au 450-474-8470.');
     btn.disabled = false;
-    btn.innerHTML = 'Obtenir ma soumission gratuite →';
+    btn.innerHTML = 'Obtenir ma soumission gratuite →+;
   }
 });
 </script>
