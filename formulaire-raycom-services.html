@@ -167,11 +167,11 @@ const WORKER_URL = 'https://raycom-soumission.proud-leaf-b313.workers.dev/submit
 const MAKE_WEBHOOK = 'https://hook.us2.make.com/kw4lf4m19kxmsgqb3a4n9f5pjfn6ncor';
 
 const PRIX_BASE = {
-  'Panneaux solaires': 35000, 'Batterie de stockage': 14000,
-  'Borne de recharge VÉ': 3500, 'Travaux électriques': 7500,
-  'Génératrice': 8000, 'Inspection / Diagnostic': 500
+  'Panneaux solaires': 18000, 'Batterie de stockage': 12000,
+  'Borne de recharge VÉ': 1200, 'Travaux électriques': 3500,
+  'Génératrice': 7000, 'Inspection / Diagnostic': 450
 };
-const MULT_SEGMENT = { 'Résidentiel': 1.0, 'Commercial': 2.8, 'Multilogement': 2.2, 'Municipal': 3.5, 'Agricole': 2.0 };
+const MULT_SEGMENT = { 'Résidentiel': 1.0, 'Commercial': 1.8, 'Multilogement': 1.5, 'Municipal': 2.5, 'Agricole': 1.6 };
 const MULT_CONSO = {
   '< 100 $/mois (~10 000 kWh/an)': 0.75, '100-200 $/mois (10-20 000 kWh/an)': 1.00,
   '200-300 $/mois (20-30 000 kWh/an)': 1.35, '300-500 $/mois (30-50 000 kWh/an)': 1.70,
@@ -192,7 +192,7 @@ function calcBudget() {
     const base = PRIX_BASE[c] || 2000;
     total += (c === 'Panneaux solaires') ? base * (MULT_CONSO[conso]||1) : base;
   }
-  if (hasSol && composantes.includes('Batterie de stockage')) total += 5000;
+  if (hasSol && composantes.includes('Batterie de stockage')) total += 5000; if (segment === 'Multilogement' && composantes.includes('Borne de recharge VÉ')) total += 1500;
   return Math.round(total * (MULT_SEGMENT[segment]||1) / 500) * 500;
 }
 
@@ -285,7 +285,7 @@ document.getElementById('raycomForm').addEventListener('submit', async (e) => {
       fetch(MAKE_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
     ]);
     if (r1.status === 'fulfilled' && r1.value.ok) {
-      form.innerHTML = '<div class="text-center py-16"><div class="text-5xl mb-6">✅</div><h2 class="text-2xl font-bold text-navy mb-3">Demande reçue !</h2><p class="text-slate-500">Notre équipe vous contacte sous 24h ouvrables.</p></div>';
+      form.innerHTML = '<div class="text-center py-16"><div class="text-5xl mb-6">✅</div><h2 class="text-2xl font-bold text-navy mb-3">Votre demande a bien été reçue !</h2><p class="text-slate-600 mb-6 max-w-md mx-auto">Merci pour votre confiance. Un membre de notre équipe communiquera avec vous dans les 24 heures ouvrables pour établir votre soumission personnalisée.</p><ul class="text-left inline-block space-y-3 text-slate-600 text-sm"><li class="flex items-start gap-2"><span class="text-green-500 font-bold">&#x2713;</span><span><strong>Financement disponible</strong> via Financeit &mdash; approbation en quelques minutes, sans impact sur votre crédit.</span></li><li class="flex items-start gap-2"><span class="text-green-500 font-bold">&#x2713;</span><span><strong>Subventions et crédits d&#x27;impôt</strong> disponibles selon votre projet &mdash; nous vous guidons dans toutes les démarches.</span></li><li class="flex items-start gap-2"><span class="text-green-500 font-bold">&#x2713;</span><span><strong>Installation certifiée maître électricien RBQ</strong> &mdash; travaux garantis, conformes au Code du bâtiment du Québec.</span></li></ul></div>';
     } else throw new Error('worker_error');
   } catch {
     alert('Erreur lors de l\'envoi. Réessayez ou appelez-nous au 450-474-8470.');
