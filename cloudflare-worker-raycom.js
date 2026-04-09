@@ -1,8 +1,8 @@
 // ============================================================
-//  RAYCOM LEAD PROXY — Cloudflare Worker v3
-//  Reçoit les POST du formulaire GitHub Pages et orchestre GHL
+//  RAYCOM LEAD PROXY â Cloudflare Worker v3
+//  ReÃ§oit les POST du formulaire GitHub Pages et orchestre GHL
 // ============================================================
-//  Secrets Cloudflare (Settings → Variables) :
+//  Secrets Cloudflare (Settings â Variables) :
 //    GHL_TOKEN              Bearer PIT (pit-xxxxx)
 //    GHL_LOCATION_ID        Ey6SB5epk8GFGgL5BfhX
 //    GHL_PIPELINE_ID        iXxbCQTd0UOm3AMcRxIQ
@@ -25,19 +25,19 @@ const GHL_BASE    = 'https://services.leadconnectorhq.com';
 const GHL_VERSION = '2021-07-28';
 
 // ============================================================
-//  MATRICE DE PRIX — Valeur opportunité automatique
+//  MATRICE DE PRIX â Valeur opportunitÃ© automatique
 // ============================================================
 const PRIX_BASE = {
   'Panneaux solaires':       35000,
   'Batterie de stockage':    14000,
-  'Borne de recharge VÉ':    3500,
-  'Travaux électriques':     7500,
-  'Génératrice':             8000,
+  'Borne de recharge VÃ':    3500,
+  'Travaux Ã©lectriques':     7500,
+  'GÃ©nÃ©ratrice':             8000,
   'Inspection / Diagnostic': 500,
 };
 
 const MULT_SEGMENT = {
-  'Résidentiel':  1.0,
+  'RÃ©sidentiel':  1.0,
   'Commercial':   2.8,
   'Multilogement':2.2,
   'Municipal':    3.5,
@@ -57,7 +57,7 @@ function calculateOpportunityValue(p) {
     ? p.projet_composantes
     : (p.projet_composantes_str || '').split(',').map(s => s.trim()).filter(Boolean);
 
-  const segment = p.projet_segment || 'Résidentiel';
+  const segment = p.projet_segment || 'RÃ©sidentiel';
   const conso   = p.hq_consommation_bracket || '';
   const nature  = p.projet_nature || 'Existant';
 
@@ -77,11 +77,14 @@ function calculateOpportunityValue(p) {
     const base = PRIX_BASE[c] || 2000;
     total += (c === 'Panneaux solaires') ? base * multConso : base;
   }
-  if (hasSolaire && hasBatterie) total += 5000;
+  if (hasSolaire && hasBatterie) total += 5000; // bonus combo cÃ¢blage/onduleur
 
   return Math.round((total * multSeg) / 500) * 500;
 }
 
+// ============================================================
+//  HELPERS
+// ============================================================
 function cors(origin) {
   const allow = origin && ALLOWED_ORIGINS.includes(origin) ? origin : '*';
   return {
@@ -123,25 +126,151 @@ async function getAssignedUserId(env) {
   } catch { return null; }
 }
 
-function buildLeadSMS(p) {
-  return `Bonjour ${p['First name']}, c'est Raycom Électrique. On a bien reçu votre demande pour votre projet ${p.projet_composantes_str || p.projet_nature}. On vous contacte sous 24h ouvrables. — Jean-François`;
-}
-
-function buildInternalSMS(p, oppValue) {
-  const val = oppValue ? `~${Math.round(oppValue / 1000)}k$` : '';
-  return `🔥 ${p['First name']} ${p['Last name']} ${val} — ${p.projet_composantes_str || p.projet_nature}. ${p.Phone}. ${p.City}`;
-}
-
+// ============================================================
+//  EMAILS & SMS
+// ============================================================
 function buildLeadEmail(p) {
-  const val = p.budget_estime ? `${Number(p.budget_estime).toLocaleString('fr-CA')} $` : null;
-  return `<div style="font-family:Arial,sans-serif;color:#1a1a1a;font-size:14px;"><p>Bonjour ${html(p['First name'])},</p><p>Merci d’avoir soumis votre demande à <strong>Raycom Électrique</strong>. Notre équipe vous contactera sous <strong>24h ouvrables</strong>.</p>${val ? `<p><strong>Budget estimé :</strong> <span style="color:#1B5DC8;font-weight:700;">${html(val)}</span></p>` : ''}<p>— L’équipe Raycom Électrique</p></div>`;
+  const composantes = p.projet_composantes_str || p.projet_nature || '';
+  return `
+<div style="font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;font-size:14px;line-height:1.6;max-width:620px;">
+
+<!-- HEADER -->
+<div style="background:linear-gradient(135deg,#0a1b3d 0%,#1B5DC8 100%);padding:28px 30px;border-radius:10px 10px 0 0;text-align:center;">
+  <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:0.5px;">RAYCOM ÃLECTRIQUE</div>
+  <div style="font-size:12px;color:#a8c4e8;margin-top:4px;text-transform:uppercase;letter-spacing:2px;">MaÃ®tre Ã©lectricien certifiÃ© Â· RBQ 5590-9402-01</div>
+</div>
+
+<!-- CORPS -->
+<div style="background:#fff;padding:28px 30px;border:1px solid #dbe3ef;border-top:none;">
+  <p style="font-size:16px;font-weight:600;color:#0E1E4A;">Bonjour ${html(p['First name'])},</p>
+  <p>Merci pour votre confiance. Nous avons bien reÃ§u votre demande de soumission et nous sommes heureux de vous accompagner dans votre projet.</p>
+  <p>Un membre de notre Ã©quipe vous contactera dans les <strong style="color:#0E1E4A;">24 heures ouvrables</strong> pour discuter de votre projet en dÃ©tail et Ã©tablir une soumission personnalisÃ©e.</p>
+
+  <!-- RÃCAP PROJET -->
+  <div style="background:#f4f7fc;border-left:4px solid #1B5DC8;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:13px;">
+    <div style="font-weight:700;color:#0E1E4A;margin-bottom:8px;">Votre demande en un coup d'Åil</div>
+    <div style="color:#444;line-height:1.8;">
+      <strong>Projet :</strong> ${html(composantes)}<br>
+      <strong>Type :</strong> ${html(p.projet_segment)} Â· ${html(p.projet_nature)}<br>
+      ${p.hq_consommation_bracket ? `<strong>Consommation HQ :</strong> ${html(p.hq_consommation_bracket)}<br>` : ''}
+      <strong>Adresse :</strong> ${html(p.City)}, ${html(p.State)}
+    </div>
+  </div>
+
+  <p>En attendant, n'hÃ©sitez pas Ã  nous joindre directement si vous avez des questions :</p>
+  <p style="margin:6px 0;">ð <a href="tel:4504748470" style="color:#1B5DC8;text-decoration:none;font-weight:600;">450-474-8470</a></p>
+  <p style="margin:6px 0;">ð¬ <a href="sms:4388016401" style="color:#1B5DC8;text-decoration:none;font-weight:600;">438-801-6401</a> (texto)</p>
+  <p style="margin:6px 0;">âï¸ <a href="mailto:info@raycomelectrique.com" style="color:#1B5DC8;text-decoration:none;font-weight:600;">info@raycomelectrique.com</a></p>
+
+  <p style="margin-top:24px;color:#555;font-size:13px;">Cordialement,</p>
+  <p style="margin-top:4px;">â L'Ã©quipe Raycom Ãlectrique</p>
+</div>
+<table cellpadding="0" cellspacing="0" border="0" style="border-top:3px solid #1B5DC8;margin-top:18px;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;font-size:13px;line-height:1.5;width:100%;">
+<tr>
+<td style="padding:14px 0 0 0;vertical-align:top;">
+<div style="font-size:15px;font-weight:700;color:#0E1E4A;">Jean-FranÃ§ois Rayle</div>
+<div style="font-size:11px;color:#1B5DC8;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">PrÃ©sident â¢ MaÃ®tre Ã©lectricien</div>
+<div style="font-size:12px;font-weight:700;color:#0E1E4A;margin-top:8px;letter-spacing:0.5px;">RAYCOM ÃLECTRIQUE INC.</div>
+<div style="font-size:12px;color:#555;margin-top:5px;line-height:1.7;">
+3321 Ave de la Gare #112, Mascouche, QC&nbsp;&nbsp;J7K 0X7<br>
+TÃ©l. <a href="tel:4504748470" style="color:#555;text-decoration:none;">450-474-8470</a>&nbsp;&nbsp;â¢&nbsp;&nbsp;Cell <a href="tel:4388016401" style="color:#555;text-decoration:none;">438-801-6401</a><br>
+<a href="mailto:info@raycomelectrique.com" style="color:#1B5DC8;text-decoration:none;">info@raycomelectrique.com</a>&nbsp;&nbsp;â¢&nbsp;&nbsp;<a href="https://www.raycomelectrique.com" style="color:#1B5DC8;text-decoration:none;font-weight:600;">raycomelectrique.com</a><br>
+<span style="color:#999;font-size:11px;">RBQ 5590-9402-01</span>
+</div>
+</td>
+</tr>
+<tr>
+<td style="padding:10px 0 0 0;border-top:1px solid #e0e0e0;">
+<div style="font-size:10px;color:#1B5DC8;text-transform:uppercase;letter-spacing:1.2px;font-weight:700;padding-top:8px;">â¡ Partenaires certifiÃ©s : Tesla Powerwall&nbsp;â¢&nbsp;Sigenergy&nbsp;â¢&nbsp;Fox ESS&nbsp;â¢&nbsp;Financeit</div>
+</td>
+</tr>
+</table>
+</div>`;
+}
+
+function buildLeadSMS(p) {
+  return `Bonjour ${p['First name']}, c'est Raycom Ãlectrique. On a bien reÃ§u votre demande pour votre projet ${p.projet_composantes_str || p.projet_nature}. On vous contacte sous 24h ouvrables. â Jean-FranÃ§ois`;
 }
 
 function buildInternalEmail(p, contactId, oppValue) {
   const valFmt = oppValue ? `${oppValue.toLocaleString('fr-CA')} $` : 'N/A';
-  return `<h2>🔥 Nouveau lead — ${html(p.projet_segment)}</h2><p><strong>${html(p['First name'])} ${html(p['Last name'])}</strong> — ${html(p.Phone)}</p><p><strong>Valeur :</strong> ${html(valFmt)}</p><p><a href="https://app.gohighlevel.com/v2/location/${html(p._locationId)}/contacts/detail/${html(contactId)}">→ Ouvrir dans GHL</a></p>`;
+  const composantes = p.projet_composantes_str || p.projet_nature || 'â';
+  const ville = [p.City, p.State].filter(Boolean).join(', ') || 'â';
+  // RÃ©sumÃ© intentions : segment + composantes + consommation HQ
+  const intentions = [
+    p.projet_segment,
+    composantes,
+    p.hq_consommation_bracket ? `Conso HQ : ${p.hq_consommation_bracket}` : null,
+    p.projet_nature === 'Construction neuve' ? 'Construction neuve' : null,
+  ].filter(Boolean).join(' Â· ');
+
+  return `
+<div style="font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;font-size:14px;line-height:1.5;max-width:640px;">
+
+<!-- EN-TÃTE LEAD -->
+<div style="background:#0E1E4A;color:#fff;padding:16px 20px;border-radius:8px 8px 0 0;">
+  <div style="font-size:18px;font-weight:700;">ð¥ Nouveau lead â ${html(p.projet_segment)}</div>
+  <div style="font-size:13px;color:#a8c4e8;margin-top:4px;">${html(intentions)}</div>
+</div>
+
+<!-- BLOC CONTACT + VALEUR -->
+<table cellpadding="0" cellspacing="0" style="width:100%;border:1px solid #dbe3ef;border-top:none;border-radius:0 0 8px 8px;background:#fff;">
+<tr>
+  <td style="padding:16px 20px;vertical-align:top;width:55%;">
+    <div style="font-size:16px;font-weight:700;color:#0E1E4A;">${html(p['First name'])} ${html(p['Last name'])}</div>
+    <div style="margin-top:6px;font-size:13px;color:#444;">
+      ð ${html(ville)}<br>
+      ð <a href="tel:${html(p.Phone)}" style="color:#1B5DC8;text-decoration:none;">${html(p.Phone)}</a><br>
+      âï¸ <a href="mailto:${html(p.Email)}" style="color:#1B5DC8;text-decoration:none;">${html(p.Email)}</a>
+    </div>
+  </td>
+  <td style="padding:16px 20px;vertical-align:top;text-align:right;border-left:1px solid #dbe3ef;">
+    <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;">Valeur pipeline</div>
+    <div style="font-size:24px;font-weight:800;color:#1B5DC8;">${html(valFmt)}</div>
+  </td>
+</tr>
+</table>
+
+<!-- TABLEAU PROJET -->
+<table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:13px;margin-top:16px;border:1px solid #dbe3ef;border-radius:8px;overflow:hidden;">
+<tr style="background:#f0f4fb;">
+  <td style="padding:8px 14px;font-weight:700;color:#0E1E4A;border-bottom:1px solid #dbe3ef;" colspan="2">DÃ©tails du projet</td>
+</tr>
+<tr><td style="padding:7px 14px;color:#666;width:170px;border-bottom:1px solid #f0f4fb;">Segment</td><td style="padding:7px 14px;font-weight:600;border-bottom:1px solid #f0f4fb;">${html(p.projet_segment)}</td></tr>
+<tr style="background:#f9fbfe;"><td style="padding:7px 14px;color:#666;border-bottom:1px solid #f0f4fb;">Nature</td><td style="padding:7px 14px;border-bottom:1px solid #f0f4fb;">${html(p.projet_nature)}</td></tr>
+<tr><td style="padding:7px 14px;color:#666;border-bottom:1px solid #f0f4fb;">Composantes</td><td style="padding:7px 14px;font-weight:600;color:#0E1E4A;border-bottom:1px solid #f0f4fb;">${html(composantes)}</td></tr>
+<tr style="background:#f9fbfe;"><td style="padding:7px 14px;color:#666;border-bottom:1px solid #f0f4fb;">Consommation HQ</td><td style="padding:7px 14px;border-bottom:1px solid #f0f4fb;">${html(p.hq_consommation_bracket) || 'â'}</td></tr>
+<tr><td style="padding:7px 14px;color:#666;border-bottom:1px solid #f0f4fb;">Ville</td><td style="padding:7px 14px;font-weight:600;border-bottom:1px solid #f0f4fb;">${html(ville)}</td></tr>
+<tr style="background:#f9fbfe;"><td style="padding:7px 14px;color:#666;" colspan="2">ð¬ Notes : ${html(p.projet_notes) || '(aucune)'}</td></tr>
+</table>
+
+<!-- DOCUMENTS -->
+${(p.doc_facture_hq || p.photos_panneau || p.photos_compteur || p.photos_emplacement || p.doc_plans) ? `
+<div style="margin-top:12px;padding:10px 14px;background:#f9fbfe;border:1px solid #dbe3ef;border-radius:8px;font-size:12px;">
+  <strong>ð Documents reÃ§us :</strong><br>
+  ${p.doc_facture_hq ? `ð <a href="${html(p.doc_facture_hq)}" style="color:#1B5DC8;">Facture HQ</a>  &nbsp;` : ''}
+  ${p.photos_panneau ? `ð¸ <a href="${html(p.photos_panneau)}" style="color:#1B5DC8;">Panneau Ã©lectrique</a>  &nbsp;` : ''}
+  ${p.photos_compteur ? `ð¸ <a href="${html(p.photos_compteur)}" style="color:#1B5DC8;">Compteur</a>  &nbsp;` : ''}
+  ${p.photos_emplacement ? `ð¸ <a href="${html(p.photos_emplacement)}" style="color:#1B5DC8;">Emplacement</a>  &nbsp;` : ''}
+  ${p.doc_plans ? `ð <a href="${html(p.doc_plans)}" style="color:#1B5DC8;">Plans</a>` : ''}
+</div>` : ''}
+
+<!-- CTA GHL -->
+<p style="margin-top:16px;">
+<a href="https://app.gohighlevel.com/v2/location/${html(p._locationId)}/contacts/detail/${html(contactId)}" style="background:#1B5DC8;color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;">â Ouvrir dans GHL</a>
+</p>
+
+</div>`;
 }
 
+function buildInternalSMS(p, oppValue) {
+  const val = oppValue ? `~${Math.round(oppValue / 1000)}k$` : '';
+  return `ð¥ ${p['First name']} ${p['Last name']} ${val} â ${p.projet_composantes_str || p.projet_nature}. ${p.Phone}. ${p.City}`;
+}
+
+// ============================================================
+//  HANDLER PRINCIPAL
+// ============================================================
 async function handleSubmit(request, env) {
   const origin = request.headers.get('Origin') || '';
   const corsH  = cors(origin);
@@ -150,11 +279,13 @@ async function handleSubmit(request, env) {
 
   const results = { steps: {} };
 
+  // Valeur opportunitÃ©
   const oppValue = p.budget_estime
     ? parseInt(p.budget_estime, 10)
     : calculateOpportunityValue(p);
   results.oppValue = oppValue;
 
+  // 1. UPSERT CONTACT
   const tags = [
     p.projet_segment && `segment:${p.projet_segment}`,
     p.projet_composantes_str && `composante:${p.projet_composantes_str.split(',')[0].trim()}`,
@@ -186,29 +317,42 @@ async function handleSubmit(request, env) {
   const contactId = upsert.json.contact?.id || upsert.json.id;
   results.contactId = contactId;
 
+  // 2. NOTE
   const noteLines = [
     '=== Projet ===',
     `Segment: ${p.projet_segment || ''}`,
     `Nature: ${p.projet_nature || ''}`,
     `Composantes: ${p.projet_composantes_str || ''}`,
-    `Conso HQ: ${p.hq_consommation_bracket || ''}`,
-    `Valeur estimée: ${oppValue.toLocaleString('fr-CA')} $`,
+    `Consommation HQ: ${p.hq_consommation_bracket || ''}`,
+    `Valeur estimÃ©e: ${oppValue.toLocaleString('fr-CA')} $`,
     '',
+    '=== Notes client ===',
     p.projet_notes || '(aucune)',
+    '',
+    '=== Documents ===',
+    p.doc_facture_hq     || null,
+    p.photos_panneau     ? `Panneau: ${p.photos_panneau}`         : null,
+    p.photos_compteur    ? `Compteur: ${p.photos_compteur}`       : null,
+    p.photos_emplacement ? `Emplacement: ${p.photos_emplacement}` : null,
+    p.doc_plans          ? `Plans: ${p.doc_plans}`                : null,
+    p.doc_autres         ? `Autres: ${p.doc_autres}`              : null,
+    '',
     `Soumis: ${p.submitted_at || new Date().toISOString()}`,
   ].filter(Boolean).join('\n');
 
   const note = await ghl(env, `/contacts/${contactId}/notes`, 'POST', { body: noteLines });
   results.steps.note = { status: note.status, ok: note.ok };
 
+  // 3. AUTO-ASSIGN
   const assignedUserId = await getAssignedUserId(env);
   results.assignedUserId = assignedUserId;
 
+  // 4. OPPORTUNITÃ
   const oppPayload = {
     locationId:      env.GHL_LOCATION_ID,
     pipelineId:      env.GHL_PIPELINE_ID,
     pipelineStageId: env.GHL_STAGE_ID,
-    name:            `${p['First name']} ${p['Last name']} — ${p.projet_composantes_str || p.projet_segment || 'Lead'}`,
+    name:            `${p['First name']} ${p['Last name']} â ${p.projet_composantes_str || p.projet_segment || 'Lead'}`,
     status:          'open',
     contactId,
     source:          p.source || 'Formulaire web',
@@ -219,6 +363,7 @@ async function handleSubmit(request, env) {
   const opp = await ghl(env, '/opportunities/', 'POST', oppPayload);
   results.steps.opportunity = { status: opp.status, ok: opp.ok };
 
+  // 5. SMS LEAD
   const smsLead = await ghl(env, '/conversations/messages', 'POST', {
     type:       'SMS',
     contactId,
@@ -227,15 +372,17 @@ async function handleSubmit(request, env) {
   });
   results.steps.sms_lead = { status: smsLead.status, ok: smsLead.ok, detail: smsLead.ok ? undefined : smsLead.json };
 
+  // 6. EMAIL LEAD
   const emailLead = await ghl(env, '/conversations/messages', 'POST', {
     type:      'Email',
     contactId,
-    subject:   `Merci ${p['First name']} — nous avons bien reçu votre demande`,
+    subject:   `Merci ${p['First name']} â nous avons bien reÃ§u votre demande`,
     html:      buildLeadEmail(p),
     emailFrom: env.FROM_EMAIL,
   });
   results.steps.email_lead = { status: emailLead.status, ok: emailLead.ok };
 
+  // 7. CONTACT INTERNE + NOTIFS
   const internalUpsert = await ghl(env, '/contacts/upsert', 'POST', {
     locationId: env.GHL_LOCATION_ID,
     firstName:  'Raycom',
@@ -259,7 +406,7 @@ async function handleSubmit(request, env) {
     const emailInt = await ghl(env, '/conversations/messages', 'POST', {
       type:      'Email',
       contactId: internalId,
-      subject:   `🔥 Lead ${oppValue.toLocaleString('fr-CA')} $ — ${p['First name']} ${p['Last name']} (${p.projet_segment})`,
+      subject:   `ð¥ Lead ${oppValue.toLocaleString('fr-CA')} $ â ${p['First name']} ${p['Last name']} (${p.projet_segment})`,
       html:      buildInternalEmail(p, contactId, oppValue),
       emailFrom: env.FROM_EMAIL,
     });
@@ -272,6 +419,9 @@ async function handleSubmit(request, env) {
   );
 }
 
+// ============================================================
+//  ROUTE PRINCIPALE
+// ============================================================
 export default {
   async fetch(request, env) {
     const url    = new URL(request.url);
@@ -298,6 +448,7 @@ export default {
     }
 
     if (env.ASSETS) return env.ASSETS.fetch(request);
+    returnn env.ASSETS.fetch(request);
     return new Response('Not found', { status: 404, headers: corsH });
   },
 };
