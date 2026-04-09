@@ -1,0 +1,11 @@
+name = "raycom-soumission"
+main = "cloudflare-worker-raycom.js"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+[observability]
+enabled = true
