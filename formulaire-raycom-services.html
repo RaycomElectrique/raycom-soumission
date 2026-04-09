@@ -192,7 +192,7 @@ function calcBudget() {
     const base = PRIX_BASE[c] || 2000;
     total += (c === 'Panneaux solaires') ? base * (MULT_CONSO[conso]||1) : base;
   }
-  if (hasSol && composantes.includes('Batterie de stockage')) total += 5000; if (segment === 'Multilogement' && composantes.includes('Borne de recharge VÉ')) total += 1500;
+  if (hasSol && composantes.includes('Batterie de stockage')) total += 5000; if (segment === 'Multilogement' && composantes.includes('Borne de recharge VÉ')) total += 1500; if (segment === 'Multilogement' && composantes.includes('Borne de recharge VÉ')) total += 1500;
   return Math.round(total * (MULT_SEGMENT[segment]||1) / 500) * 500;
 }
 
