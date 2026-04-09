@@ -281,7 +281,7 @@
 
           <div class="upload-box">
             <label class="font-bold text-sm text-slate-700">📸 Photos de l'emplacement d'installation</label>
-            <p class="text-xs text-slate-500 mb-2">Toiture, mur, cour, garage, stationnement... oõ vont les équipements.</p>
+            <p class="text-xs text-slate-500 mb-2">Toiture, mur, cour, garage, stationnement... où vont les équipements.</p>
             <input type="file" name="photos_emplacement" accept="image/*,.pdf" multiple>
           </div>
         </div>
@@ -430,7 +430,7 @@
 const WEBHOOK_URL = "https://hook.us2.make.com/8x27ox78k2zs8iq9h9q9we7dtcq75rvd";
 const WORKER_URL  = 'https://raycom-soumission.proud-leaf-b313.workers.dev/submit';
 
-// ── Format téléphone ──────────────────────────────────────────────────────────
+// \u2500\u2500 Format t\u00e9l\u00e9phone \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 document.getElementById('phone').addEventListener('input', e=>{
   let v = e.target.value.replace(/\D/g,'').slice(0,10);
   if(v.length>6) v = v.slice(0,3)+' '+v.slice(3,6)+'-'+v.slice(6);
@@ -438,14 +438,14 @@ document.getElementById('phone').addEventListener('input', e=>{
   e.target.value = v;
 });
 
-// ── Format code postal ────────────────────────────────────────────────────────
+// \u2500\u2500 Format code postal \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 document.getElementById('postal').addEventListener('input', e=>{
   let v = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);
   if(v.length>3) v = v.slice(0,3)+' '+v.slice(3);
   e.target.value = v;
 });
 
-// ── Refs ──────────────────────────────────────────────────────────────────────
+// \u2500\u2500 Refs \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 const form              = document.getElementById('raycomForm');
 const bar               = document.getElementById('progressBar');
 const blocExistant      = document.getElementById('blocExistant');
@@ -458,12 +458,12 @@ const blocBorneCommercial = document.getElementById('blocBorneCommercial');
 const composantesInputs = document.querySelectorAll('input[name="composantes"]');
 const natureRadios      = document.querySelectorAll('input[name="projet_nature"]');
 
-// ── Logique conditionnelle principale ─────────────────────────────────────────
-function refreshBlocs(){
+// \u2500\u2500 Logique conditionnelle principale \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+enction refreshBlocs(){
   const nature      = document.querySelector('input[name="projet_nature"]:checked').value;
   const composantes = Array.from(composantesInputs).filter(i=>i.checked).map(i=>i.value);
-  const onlyBorne   = composantes.length===1 && composantes[0]==='Borne de recharge VÉ';
-  const hasBorne    = composantes.includes('Borne de recharge VÉ');
+  const onlyBorne   = composantes.length===1 && composantes[0]==='Borne de recharge V\u00c9';
+  const hasBorne    = composantes.includes('Borne de recharge V\u00c9');
   const hasSolaire  = composantes.includes('Panneaux solaires');
 
   // Documents selon nature
@@ -496,7 +496,7 @@ function refreshBlocs(){
   }
 }
 
-// ── Logique borne contexte ────────────────────────────────────────────────────
+// \u2500\u2500 Logique borne contexte \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u25000\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 function refreshBorneContexte(){
   const ctx = document.querySelector('input[name="borne_contexte"]:checked');
   const val = ctx ? ctx.value : '';
@@ -511,8 +511,8 @@ natureRadios.forEach(r => r.addEventListener('change', ()=>{ refreshBlocs(); cal
 composantesInputs.forEach(c => c.addEventListener('change', ()=>{ refreshBlocs(); calcBudget(); }));
 refreshBlocs();
 
-// ── Progress bar ──────────────────────────────────────────────────────────────
-function updateProgress(){
+// \u2500\u2500 Progress bar \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+enction updateProgress(){
   const required = form.querySelectorAll('[required]');
   let filled = 0;
   required.forEach(f=>{ if(f.value && f.value.trim()) filled++; });
@@ -521,17 +521,17 @@ function updateProgress(){
 form.addEventListener('input', updateProgress);
 form.addEventListener('change', updateProgress);
 
-// ── MATRICES — identiques au worker ──────────────────────────────────────────
-const PRIX_BASE_FORM = {
+// \u2500\u2500 MATRICES \u2014 identiques au worker \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+const PRIUX_BASE_FORM = {
   'Panneaux solaires':       35000,
   'Batterie de stockage':    14000,
-  'Borne de recharge VÉ':    3500,
-  'Travaux électriques':     7500,
-  'Génératrice':             8000,
+  'Borne de recharge V\u00c9':    3500,
+  'Travaux \u00e9lectriques':     7500,
+  'G\u00e9n\u00e9ratrice':             8000,
   'Inspection / Diagnostic': 500,
 };
 const MULT_SEGMENT_FORM = {
-  'Résidentiel': 1.0, 'Commercial': 2.8, 'Multilogement': 2.2,
+  'R\u00e9sidentiel': 1.0, 'Commercial': 2.8, 'Multilogement': 2.2,
   'Municipal':   3.5, 'Agricole':   2.0,
 };
 const MULT_CONSO_FORM = {
@@ -542,10 +542,10 @@ const MULT_CONSO_FORM = {
   '500+ $/mois (50 000+ kWh/an)':         2.20,
 };
 
-// Subventions estimées par segment (résidentiel et multilogement seulement)
+// Subventions estim\u00e9es par segment (r\u00e9sidentiel et multilogement seulement)
 const SUBSIDY_EST = {
-  'Résidentiel':    { label: '− Incitatifs résidentiels estimés :', montant: 2500 },
-  'Multilogement':  { label: '− Incitatifs multilogement estimés :', montant: 5000 },
+  'R\u00e9sidentiel':    { label: '\u2212 Incitatifs r\u00e9sidentiels estim\u00e9s :', montant: 2500 },
+  'Multilogement':  { label: '\u2212 Incitatifs multilogement estim\u00e9s :', montant: 5000 },
 };
 
 function fmt(n){ return n.toLocaleString('fr-CA',{minimumFractionDigits:0,maximumFractionDigits:0})+' $'; }
@@ -558,11 +558,11 @@ function calcFinanceit(amount){
   return Math.ceil(amount * factor / 10) * 10;
 }
 
-// ── CALCULATEUR BUDGET ────────────────────────────────────────────────────────
+// \u2500\u2500 CALCULATEUR BUDGET \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 function calcBudget(){
   const fd          = new FormData(form);
   const composantes = fd.getAll('composantes');
-  const segment     = fd.get('projet_segment') || 'Résidentiel';
+  const segment     = fd.get('projet_segment') || 'R\u00e9sidentiel';
   const conso       = fd.get('hq_consommation_bracket') || '';
   const nature      = fd.get('projet_nature') || 'Existant';
   const budgetEl    = document.getElementById('budgetEstimation');
@@ -579,7 +579,7 @@ function calcBudget(){
   if(nature === 'Construction neuve'){
     const mult = MULT_SEGMENT_FORM[segment] || 1.0;
     central = Math.round(mult * 50000 / 500) * 500;
-    details.push({label:'Installation complète', val:central});
+    details.push({label:'Installation compl\u00e8te', val:central});
   } else {
     const hasBatterie = composantes.includes('Batterie de stockage');
     const multSeg     = MULT_SEGMENT_FORM[segment] || 1.0;
@@ -594,19 +594,19 @@ function calcBudget(){
     if(hasSolaire && hasBatterie){
       const bonus = Math.round(5000 * multSeg / 500) * 500;
       central += bonus;
-      details.push({label:'Câblage / Onduleur (combinaison)', val:bonus});
+      details.push({label:'C\u00e2blage / Onduleur (combinaison)', val:bonus});
     }
   }
 
-  // Fourchette ±18-20%
+  // Fourchette \u00b118-20%
   const minVal = Math.round(central * 0.82 / 500) * 500;
   const maxVal = Math.round(central * 1.20 / 500) * 500;
 
   document.getElementById('budgetMin').textContent = fmt(minVal);
   document.getElementById('budgetMax').textContent = fmt(maxVal);
 
-  const segNote  = segment !== 'Résidentiel' ? ` (${segment.toLowerCase()})` : '';
-  const consoNote= conso && conso !== 'Ne sais pas' ? ` • conso ${conso.split('(')[0].trim()}` : '';
+  const segNote  = segment !== 'R\u00e9sidentiel' ? ` (${segment.toLowerCase()})` : '';
+  const consoNote= conso && conso !== 'Ne sais pas' ? ` \u2022 conso ${conso.split('(')[0].trim()}` : '';
   document.getElementById('budgetNote').textContent =
     `Estimation pour votre projet${segNote}${consoNote}. Avant subventions.`;
 
@@ -616,21 +616,21 @@ function calcBudget(){
       <div style="color:#0a1b3d;font-weight:700;">${fmt(d.val)}</div>
     </div>`).join('');
 
-  // ── Subventions (solaire + segment éligible) ──
+  // \u2500\u2500 Subventions (solaire + segment \u00e9ligible) \u2500\u2500
   const subsidy    = SUBSIDY_EST[segment];
   const blocSubv   = document.getElementById('blocSubventions');
   if(hasSolaire && subsidy){
     const sNet = Math.max(0, central - subsidy.montant);
     document.getElementById('subsidyCoutBrut').textContent = fmt(central);
     document.getElementById('subsidyLabel1').textContent   = subsidy.label;
-    document.getElementById('subsidyMontant1').textContent = '−' + fmt(subsidy.montant);
+    document.getElementById('subsidyMontant1').textContent = '\u2212' + fmt(subsidy.montant);
     document.getElementById('subsidyCoutNet').textContent  = fmt(sNet);
     blocSubv.classList.remove('hidden');
   } else {
     blocSubv.classList.add('hidden');
   }
 
-  // ── Financement Financeit ──
+  // \u2500\u2500 Financement Financeit \u2500\u2500
   const finBadge = document.getElementById('financingBadge');
   if(central >= 5000){
     const monthly = calcFinanceit(central);
@@ -644,20 +644,20 @@ function calcBudget(){
   form.dataset.budgetEstime = String(central);
 }
 
-// Déclencher à chaque changement
+// D\u00e9clencher \u00e0 chaque changement
 composantesInputs.forEach(c => c.addEventListener('change', calcBudget));
 natureRadios.forEach(r => r.addEventListener('change', calcBudget));
 document.getElementById('projet_segment').addEventListener('change', calcBudget);
 form.querySelector('[name=hq_consommation_bracket]').addEventListener('change', calcBudget);
 
-// ── Upload fichiers → tmpfiles.org ────────────────────────────────────────────
+// \u2500\u2500 Upload fichiers \u2192 tmpfiles.org \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 async function uploadOne(file){
   const fd = new FormData();
   fd.append('file', file);
   const res = await fetch('https://tmpfiles.org/api/v1/upload', {method:'POST', body:fd});
   if(!res.ok) throw new Error('HTTP ' + res.status);
   const json = await res.json();
-  if(!json?.data?.url) throw new Error('réponse invalide');
+  if(!json?.data?.url) throw new Error('r\u00e9ponse invalide');
   return json.data.url.replace('tmpfiles.org/', 'tmpfiles.org/dl/').replace('/dl/dl/','/dl/');
 }
 async function filesToUrls(fileList){
@@ -668,18 +668,18 @@ async function filesToUrls(fileList){
       const url = await uploadOne(f);
       out.push(`${f.name} (${(f.size/1024/1024).toFixed(2)} Mo): ${url}`);
     }catch(e){
-      out.push(`${f.name}: ÉCHEC UPLOAD - ${e.message}`);
+      out.push(`${f.name}: \u00c9CHEC UPLOAD - ${e.message}`);
     }
   }
   return out.join(' | ');
 }
 
-// ── Soumission du formulaire ──────────────────────────────────────────────────
+// \u2500\u2500 Soumission du formulaire \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 form.addEventListener('submit', async e=>{
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  btn.innerHTML = 'Envoi en cours... ⏳';
+  btn.innerHTML = 'Envoi en cours... \u23f3';
 
   const fd          = new FormData(form);
   const composantes = fd.getAll('composantes');
@@ -733,13 +733,13 @@ form.addEventListener('submit', async e=>{
       })
     ]);
 
-    // ── Succès — personnaliser le message ──
+    // \u2500\u2500 Succ\u00e8s \u2014 personnaliser le message \u2500\u2500
     const successEl = document.getElementById('successMsg');
     document.getElementById('successName').textContent = firstName ? `, ${firstName}` : '';
 
     const budgetMin = document.getElementById('budgetMin').textContent;
     const budgetMax = document.getElementById('budgetMax').textContent;
-    if(form.dataset.budgetEstime && budgetMin !== '—'){
+    if(form.dataset.budgetEstime && budgetMin !== '\u2014'){
       document.getElementById('successBudgetMin').textContent = budgetMin;
       document.getElementById('successBudgetMax').textContent = budgetMax;
       document.getElementById('successBudgetBloc').classList.remove('hidden');
@@ -750,9 +750,9 @@ form.addEventListener('submit', async e=>{
     window.scrollTo({top:0, behavior:'smooth'});
 
   }catch(err){
-    alert('Erreur lors de l\'envoi. Réessayez ou appelez-nous au 450-474-8470.');
+    alert('Erreur lors de l\'envoi. R\u00e9essayez ou appelez-nous au 450-474-8470.');
     btn.disabled = false;
-    btn.innerHTML = 'Obtenir ma soumission gratuite →+;
+    btn.innerHTML = 'Obtenir ma soumission gratuite \u2192';
   }
 });
 </script>
