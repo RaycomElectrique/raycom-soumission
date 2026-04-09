@@ -7,7 +7,7 @@
 //    GHL_LOCATION_ID        Ey6SB5epk8GFGgL5BfhX
 //    GHL_PIPELINE_ID        iXxbCQTd0UOm3AMcRxIQ
 //    GHL_STAGE_ID           7ad5fc70-eadb-4929-b92e-07a7fa667b0f
-//    INTERNAL_PHONE         +15143533600
+//    INTERNAL_PHONE         +14388016401   (SMS business — PAS de cell perso)
 //    INTERNAL_EMAIL         info@raycomelectrique.com
 //    FROM_EMAIL             info@raycomelectrique.com
 //    GHL_FROM_NUMBER        +14388016401
