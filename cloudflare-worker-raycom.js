@@ -1,8 +1,8 @@
 // ============================================================
-//  RAYCOM LEAD PROXY â Cloudflare Worker v3
-//  ReÃ§oit les POST du formulaire GitHub Pages et orchestre GHL
+//  RAYCOM LEAD PROXY — Cloudflare Worker v3
+//  Reçoit les POST du formulaire GitHub Pages et orchestre GHL
 // ============================================================
-//  Secrets Cloudflare (Settings â Variables) :
+//  Secrets Cloudflare (Settings → Variables) :
 //    GHL_TOKEN              Bearer PIT (pit-xxxxx)
 //    GHL_LOCATION_ID        Ey6SB5epk8GFGgL5BfhX
 //    GHL_PIPELINE_ID        iXxbCQTd0UOm3AMcRxIQ
@@ -25,19 +25,19 @@ const GHL_BASE    = 'https://services.leadconnectorhq.com';
 const GHL_VERSION = '2021-07-28';
 
 // ============================================================
-//  MATRICE DE PRIX â Valeur opportunitÃ© automatique
+//  MATRICE DE PRIX — Valeur opportunité automatique
 // ============================================================
 const PRIX_BASE = {
   'Panneaux solaires':       35000,
   'Batterie de stockage':    14000,
-  'Borne de recharge VÃ':    3500,
-  'Travaux Ã©lectriques':     7500,
-  'GÃ©nÃ©ratrice':             8000,
+  'Borne de recharge VÉ':    3500,
+  'Travaux électriques':     7500,
+  'Génératrice':             8000,
   'Inspection / Diagnostic': 500,
 };
 
 const MULT_SEGMENT = {
-  'RÃ©sidentiel':  1.0,
+  'Résidentiel':  1.0,
   'Commercial':   2.8,
   'Multilogement':2.2,
   'Municipal':    3.5,
@@ -57,7 +57,7 @@ function calculateOpportunityValue(p) {
     ? p.projet_composantes
     : (p.projet_composantes_str || '').split(',').map(s => s.trim()).filter(Boolean);
 
-  const segment = p.projet_segment || 'RÃ©sidentiel';
+  const segment = p.projet_segment || 'Résidentiel';
   const conso   = p.hq_consommation_bracket || '';
   const nature  = p.projet_nature || 'Existant';
 
@@ -77,7 +77,7 @@ function calculateOpportunityValue(p) {
     const base = PRIX_BASE[c] || 2000;
     total += (c === 'Panneaux solaires') ? base * multConso : base;
   }
-  if (hasSolaire && hasBatterie) total += 5000; // bonus combo cÃ¢blage/onduleur
+  if (hasSolaire && hasBatterie) total += 5000; // bonus combo câblage/onduleur
 
   return Math.round((total * multSeg) / 500) * 500;
 }
@@ -136,52 +136,52 @@ function buildLeadEmail(p) {
 
 <!-- HEADER -->
 <div style="background:linear-gradient(135deg,#0a1b3d 0%,#1B5DC8 100%);padding:28px 30px;border-radius:10px 10px 0 0;text-align:center;">
-  <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:0.5px;">RAYCOM ÃLECTRIQUE</div>
-  <div style="font-size:12px;color:#a8c4e8;margin-top:4px;text-transform:uppercase;letter-spacing:2px;">MaÃ®tre Ã©lectricien certifiÃ© Â· RBQ 5590-9402-01</div>
+  <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:0.5px;">RAYCOM ÉLECTRIQUE</div>
+  <div style="font-size:12px;color:#a8c4e8;margin-top:4px;text-transform:uppercase;letter-spacing:2px;">Maître électricien certifié · RBQ 5590-9402-01</div>
 </div>
 
 <!-- CORPS -->
 <div style="background:#fff;padding:28px 30px;border:1px solid #dbe3ef;border-top:none;">
   <p style="font-size:16px;font-weight:600;color:#0E1E4A;">Bonjour ${html(p['First name'])},</p>
-  <p>Merci pour votre confiance. Nous avons bien reÃ§u votre demande de soumission et nous sommes heureux de vous accompagner dans votre projet.</p>
-  <p>Un membre de notre Ã©quipe vous contactera dans les <strong style="color:#0E1E4A;">24 heures ouvrables</strong> pour discuter de votre projet en dÃ©tail et Ã©tablir une soumission personnalisÃ©e.</p>
+  <p>Merci pour votre confiance. Nous avons bien reçu votre demande de soumission et nous sommes heureux de vous accompagner dans votre projet.</p>
+  <p>Un membre de notre équipe vous contactera dans les <strong style="color:#0E1E4A;">24 heures ouvrables</strong> pour discuter de votre projet en détail et établir une soumission personnalisée.</p>
 
-  <!-- RÃCAP PROJET -->
+  <!-- RÉCAP PROJET -->
   <div style="background:#f4f7fc;border-left:4px solid #1B5DC8;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:13px;">
-    <div style="font-weight:700;color:#0E1E4A;margin-bottom:8px;">Votre demande en un coup d'Åil</div>
+    <div style="font-weight:700;color:#0E1E4A;margin-bottom:8px;">Votre demande en un coup d'œil</div>
     <div style="color:#444;line-height:1.8;">
       <strong>Projet :</strong> ${html(composantes)}<br>
-      <strong>Type :</strong> ${html(p.projet_segment)} Â· ${html(p.projet_nature)}<br>
+      <strong>Type :</strong> ${html(p.projet_segment)} · ${html(p.projet_nature)}<br>
       ${p.hq_consommation_bracket ? `<strong>Consommation HQ :</strong> ${html(p.hq_consommation_bracket)}<br>` : ''}
       <strong>Adresse :</strong> ${html(p.City)}, ${html(p.State)}
     </div>
   </div>
 
-  <p>En attendant, n'hÃ©sitez pas Ã  nous joindre directement si vous avez des questions :</p>
-  <p style="margin:6px 0;">ð <a href="tel:4504748470" style="color:#1B5DC8;text-decoration:none;font-weight:600;">450-474-8470</a></p>
-  <p style="margin:6px 0;">ð¬ <a href="sms:4388016401" style="color:#1B5DC8;text-decoration:none;font-weight:600;">438-801-6401</a> (texto)</p>
-  <p style="margin:6px 0;">âï¸ <a href="mailto:info@raycomelectrique.com" style="color:#1B5DC8;text-decoration:none;font-weight:600;">info@raycomelectrique.com</a></p>
+  <p>En attendant, n'hésitez pas à nous joindre directement si vous avez des questions :</p>
+  <p style="margin:6px 0;">📞 <a href="tel:4504748470" style="color:#1B5DC8;text-decoration:none;font-weight:600;">450-474-8470</a></p>
+  <p style="margin:6px 0;">💬 <a href="sms:4388016401" style="color:#1B5DC8;text-decoration:none;font-weight:600;">438-801-6401</a> (texto)</p>
+  <p style="margin:6px 0;">✉️ <a href="mailto:info@raycomelectrique.com" style="color:#1B5DC8;text-decoration:none;font-weight:600;">info@raycomelectrique.com</a></p>
 
   <p style="margin-top:24px;color:#555;font-size:13px;">Cordialement,</p>
-  <p style="margin-top:4px;">â L'Ã©quipe Raycom Ãlectrique</p>
+  <p style="margin-top:4px;">— L'équipe Raycom Électrique</p>
 </div>
 <table cellpadding="0" cellspacing="0" border="0" style="border-top:3px solid #1B5DC8;margin-top:18px;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;font-size:13px;line-height:1.5;width:100%;">
 <tr>
 <td style="padding:14px 0 0 0;vertical-align:top;">
-<div style="font-size:15px;font-weight:700;color:#0E1E4A;">Jean-FranÃ§ois Rayle</div>
-<div style="font-size:11px;color:#1B5DC8;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">PrÃ©sident â¢ MaÃ®tre Ã©lectricien</div>
-<div style="font-size:12px;font-weight:700;color:#0E1E4A;margin-top:8px;letter-spacing:0.5px;">RAYCOM ÃLECTRIQUE INC.</div>
+<div style="font-size:15px;font-weight:700;color:#0E1E4A;">Jean-François Rayle</div>
+<div style="font-size:11px;color:#1B5DC8;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Président • Maître électricien</div>
+<div style="font-size:12px;font-weight:700;color:#0E1E4A;margin-top:8px;letter-spacing:0.5px;">RAYCOM ÉLECTRIQUE INC.</div>
 <div style="font-size:12px;color:#555;margin-top:5px;line-height:1.7;">
 3321 Ave de la Gare #112, Mascouche, QC&nbsp;&nbsp;J7K 0X7<br>
-TÃ©l. <a href="tel:4504748470" style="color:#555;text-decoration:none;">450-474-8470</a>&nbsp;&nbsp;â¢&nbsp;&nbsp;Cell <a href="tel:4388016401" style="color:#555;text-decoration:none;">438-801-6401</a><br>
-<a href="mailto:info@raycomelectrique.com" style="color:#1B5DC8;text-decoration:none;">info@raycomelectrique.com</a>&nbsp;&nbsp;â¢&nbsp;&nbsp;<a href="https://www.raycomelectrique.com" style="color:#1B5DC8;text-decoration:none;font-weight:600;">raycomelectrique.com</a><br>
+Tél. <a href="tel:4504748470" style="color:#555;text-decoration:none;">450-474-8470</a>&nbsp;&nbsp;•&nbsp;&nbsp;Cell <a href="tel:4388016401" style="color:#555;text-decoration:none;">438-801-6401</a><br>
+<a href="mailto:info@raycomelectrique.com" style="color:#1B5DC8;text-decoration:none;">info@raycomelectrique.com</a>&nbsp;&nbsp;•&nbsp;&nbsp;<a href="https://www.raycomelectrique.com" style="color:#1B5DC8;text-decoration:none;font-weight:600;">raycomelectrique.com</a><br>
 <span style="color:#999;font-size:11px;">RBQ 5590-9402-01</span>
 </div>
 </td>
 </tr>
 <tr>
 <td style="padding:10px 0 0 0;border-top:1px solid #e0e0e0;">
-<div style="font-size:10px;color:#1B5DC8;text-transform:uppercase;letter-spacing:1.2px;font-weight:700;padding-top:8px;">â¡ Partenaires certifiÃ©s : Tesla Powerwall&nbsp;â¢&nbsp;Sigenergy&nbsp;â¢&nbsp;Fox ESS&nbsp;â¢&nbsp;Financeit</div>
+<div style="font-size:10px;color:#1B5DC8;text-transform:uppercase;letter-spacing:1.2px;font-weight:700;padding-top:8px;">⚡ Partenaires certifiés : Tesla Powerwall&nbsp;•&nbsp;Sigenergy&nbsp;•&nbsp;Fox ESS&nbsp;•&nbsp;Financeit</div>
 </td>
 </tr>
 </table>
@@ -189,27 +189,27 @@ TÃ©l. <a href="tel:4504748470" style="color:#555;text-decoration:none;">450-47
 }
 
 function buildLeadSMS(p) {
-  return `Bonjour ${p['First name']}, c'est Raycom Ãlectrique. On a bien reÃ§u votre demande pour votre projet ${p.projet_composantes_str || p.projet_nature}. On vous contacte sous 24h ouvrables. â Jean-FranÃ§ois`;
+  return `Bonjour ${p['First name']}, c'est Raycom Électrique. On a bien reçu votre demande pour votre projet ${p.projet_composantes_str || p.projet_nature}. On vous contacte sous 24h ouvrables. — Jean-François`;
 }
 
 function buildInternalEmail(p, contactId, oppValue) {
   const valFmt = oppValue ? `${oppValue.toLocaleString('fr-CA')} $` : 'N/A';
-  const composantes = p.projet_composantes_str || p.projet_nature || 'â';
-  const ville = [p.City, p.State].filter(Boolean).join(', ') || 'â';
-  // RÃ©sumÃ© intentions : segment + composantes + consommation HQ
+  const composantes = p.projet_composantes_str || p.projet_nature || '—';
+  const ville = [p.City, p.State].filter(Boolean).join(', ') || '—';
+  // Résumé intentions : segment + composantes + consommation HQ
   const intentions = [
     p.projet_segment,
     composantes,
     p.hq_consommation_bracket ? `Conso HQ : ${p.hq_consommation_bracket}` : null,
     p.projet_nature === 'Construction neuve' ? 'Construction neuve' : null,
-  ].filter(Boolean).join(' Â· ');
+  ].filter(Boolean).join(' · ');
 
   return `
 <div style="font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;font-size:14px;line-height:1.5;max-width:640px;">
 
-<!-- EN-TÃTE LEAD -->
+<!-- EN-TÊTE LEAD -->
 <div style="background:#0E1E4A;color:#fff;padding:16px 20px;border-radius:8px 8px 0 0;">
-  <div style="font-size:18px;font-weight:700;">ð¥ Nouveau lead â ${html(p.projet_segment)}</div>
+  <div style="font-size:18px;font-weight:700;">🔥 Nouveau lead — ${html(p.projet_segment)}</div>
   <div style="font-size:13px;color:#a8c4e8;margin-top:4px;">${html(intentions)}</div>
 </div>
 
@@ -219,9 +219,9 @@ function buildInternalEmail(p, contactId, oppValue) {
   <td style="padding:16px 20px;vertical-align:top;width:55%;">
     <div style="font-size:16px;font-weight:700;color:#0E1E4A;">${html(p['First name'])} ${html(p['Last name'])}</div>
     <div style="margin-top:6px;font-size:13px;color:#444;">
-      ð ${html(ville)}<br>
-      ð <a href="tel:${html(p.Phone)}" style="color:#1B5DC8;text-decoration:none;">${html(p.Phone)}</a><br>
-      âï¸ <a href="mailto:${html(p.Email)}" style="color:#1B5DC8;text-decoration:none;">${html(p.Email)}</a>
+      📍 ${html(ville)}<br>
+      📞 <a href="tel:${html(p.Phone)}" style="color:#1B5DC8;text-decoration:none;">${html(p.Phone)}</a><br>
+      ✉️ <a href="mailto:${html(p.Email)}" style="color:#1B5DC8;text-decoration:none;">${html(p.Email)}</a>
     </div>
   </td>
   <td style="padding:16px 20px;vertical-align:top;text-align:right;border-left:1px solid #dbe3ef;">
@@ -234,30 +234,30 @@ function buildInternalEmail(p, contactId, oppValue) {
 <!-- TABLEAU PROJET -->
 <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;font-size:13px;margin-top:16px;border:1px solid #dbe3ef;border-radius:8px;overflow:hidden;">
 <tr style="background:#f0f4fb;">
-  <td style="padding:8px 14px;font-weight:700;color:#0E1E4A;border-bottom:1px solid #dbe3ef;" colspan="2">DÃ©tails du projet</td>
+  <td style="padding:8px 14px;font-weight:700;color:#0E1E4A;border-bottom:1px solid #dbe3ef;" colspan="2">Détails du projet</td>
 </tr>
 <tr><td style="padding:7px 14px;color:#666;width:170px;border-bottom:1px solid #f0f4fb;">Segment</td><td style="padding:7px 14px;font-weight:600;border-bottom:1px solid #f0f4fb;">${html(p.projet_segment)}</td></tr>
 <tr style="background:#f9fbfe;"><td style="padding:7px 14px;color:#666;border-bottom:1px solid #f0f4fb;">Nature</td><td style="padding:7px 14px;border-bottom:1px solid #f0f4fb;">${html(p.projet_nature)}</td></tr>
 <tr><td style="padding:7px 14px;color:#666;border-bottom:1px solid #f0f4fb;">Composantes</td><td style="padding:7px 14px;font-weight:600;color:#0E1E4A;border-bottom:1px solid #f0f4fb;">${html(composantes)}</td></tr>
-<tr style="background:#f9fbfe;"><td style="padding:7px 14px;color:#666;border-bottom:1px solid #f0f4fb;">Consommation HQ</td><td style="padding:7px 14px;border-bottom:1px solid #f0f4fb;">${html(p.hq_consommation_bracket) || 'â'}</td></tr>
+<tr style="background:#f9fbfe;"><td style="padding:7px 14px;color:#666;border-bottom:1px solid #f0f4fb;">Consommation HQ</td><td style="padding:7px 14px;border-bottom:1px solid #f0f4fb;">${html(p.hq_consommation_bracket) || '—'}</td></tr>
 <tr><td style="padding:7px 14px;color:#666;border-bottom:1px solid #f0f4fb;">Ville</td><td style="padding:7px 14px;font-weight:600;border-bottom:1px solid #f0f4fb;">${html(ville)}</td></tr>
-<tr style="background:#f9fbfe;"><td style="padding:7px 14px;color:#666;" colspan="2">ð¬ Notes : ${html(p.projet_notes) || '(aucune)'}</td></tr>
+<tr style="background:#f9fbfe;"><td style="padding:7px 14px;color:#666;" colspan="2">💬 Notes : ${html(p.projet_notes) || '(aucune)'}</td></tr>
 </table>
 
 <!-- DOCUMENTS -->
 ${(p.doc_facture_hq || p.photos_panneau || p.photos_compteur || p.photos_emplacement || p.doc_plans) ? `
 <div style="margin-top:12px;padding:10px 14px;background:#f9fbfe;border:1px solid #dbe3ef;border-radius:8px;font-size:12px;">
-  <strong>ð Documents reÃ§us :</strong><br>
-  ${p.doc_facture_hq ? `ð <a href="${html(p.doc_facture_hq)}" style="color:#1B5DC8;">Facture HQ</a>  &nbsp;` : ''}
-  ${p.photos_panneau ? `ð¸ <a href="${html(p.photos_panneau)}" style="color:#1B5DC8;">Panneau Ã©lectrique</a>  &nbsp;` : ''}
-  ${p.photos_compteur ? `ð¸ <a href="${html(p.photos_compteur)}" style="color:#1B5DC8;">Compteur</a>  &nbsp;` : ''}
-  ${p.photos_emplacement ? `ð¸ <a href="${html(p.photos_emplacement)}" style="color:#1B5DC8;">Emplacement</a>  &nbsp;` : ''}
-  ${p.doc_plans ? `ð <a href="${html(p.doc_plans)}" style="color:#1B5DC8;">Plans</a>` : ''}
+  <strong>📎 Documents reçus :</strong><br>
+  ${p.doc_facture_hq ? `📄 <a href="${html(p.doc_facture_hq)}" style="color:#1B5DC8;">Facture HQ</a>  &nbsp;` : ''}
+  ${p.photos_panneau ? `📸 <a href="${html(p.photos_panneau)}" style="color:#1B5DC8;">Panneau électrique</a>  &nbsp;` : ''}
+  ${p.photos_compteur ? `📸 <a href="${html(p.photos_compteur)}" style="color:#1B5DC8;">Compteur</a>  &nbsp;` : ''}
+  ${p.photos_emplacement ? `📸 <a href="${html(p.photos_emplacement)}" style="color:#1B5DC8;">Emplacement</a>  &nbsp;` : ''}
+  ${p.doc_plans ? `📐 <a href="${html(p.doc_plans)}" style="color:#1B5DC8;">Plans</a>` : ''}
 </div>` : ''}
 
 <!-- CTA GHL -->
 <p style="margin-top:16px;">
-<a href="https://app.gohighlevel.com/v2/location/${html(p._locationId)}/contacts/detail/${html(contactId)}" style="background:#1B5DC8;color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;">â Ouvrir dans GHL</a>
+<a href="https://app.gohighlevel.com/v2/location/${html(p._locationId)}/contacts/detail/${html(contactId)}" style="background:#1B5DC8;color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;">→ Ouvrir dans GHL</a>
 </p>
 
 </div>`;
@@ -265,7 +265,7 @@ ${(p.doc_facture_hq || p.photos_panneau || p.photos_compteur || p.photos_emplace
 
 function buildInternalSMS(p, oppValue) {
   const val = oppValue ? `~${Math.round(oppValue / 1000)}k$` : '';
-  return `ð¥ ${p['First name']} ${p['Last name']} ${val} â ${p.projet_composantes_str || p.projet_nature}. ${p.Phone}. ${p.City}`;
+  return `🔥 ${p['First name']} ${p['Last name']} ${val} — ${p.projet_composantes_str || p.projet_nature}. ${p.Phone}. ${p.City}`;
 }
 
 // ============================================================
@@ -279,7 +279,7 @@ async function handleSubmit(request, env) {
 
   const results = { steps: {} };
 
-  // Valeur opportunitÃ©
+  // Valeur opportunité
   const oppValue = p.budget_estime
     ? parseInt(p.budget_estime, 10)
     : calculateOpportunityValue(p);
@@ -324,13 +324,13 @@ async function handleSubmit(request, env) {
     `Nature: ${p.projet_nature || ''}`,
     `Composantes: ${p.projet_composantes_str || ''}`,
     `Consommation HQ: ${p.hq_consommation_bracket || ''}`,
-    `Valeur estimÃ©e: ${oppValue.toLocaleString('fr-CA')} $`,
+    `Valeur estimée: ${oppValue.toLocaleString('fr-CA')} $`,
     '',
     '=== Notes client ===',
     p.projet_notes || '(aucune)',
     '',
     '=== Documents ===',
-    p.doc_facture_hq     || null,
+    p.doc_facture_hq     ? `Facture HQ: ${p.doc_facture_hq}`     : null,
     p.photos_panneau     ? `Panneau: ${p.photos_panneau}`         : null,
     p.photos_compteur    ? `Compteur: ${p.photos_compteur}`       : null,
     p.photos_emplacement ? `Emplacement: ${p.photos_emplacement}` : null,
@@ -347,12 +347,12 @@ async function handleSubmit(request, env) {
   const assignedUserId = await getAssignedUserId(env);
   results.assignedUserId = assignedUserId;
 
-  // 4. OPPORTUNITÃ
+  // 4. OPPORTUNITÉ
   const oppPayload = {
     locationId:      env.GHL_LOCATION_ID,
     pipelineId:      env.GHL_PIPELINE_ID,
     pipelineStageId: env.GHL_STAGE_ID,
-    name:            `${p['First name']} ${p['Last name']} â ${p.projet_composantes_str || p.projet_segment || 'Lead'}`,
+    name:            `${p['First name']} ${p['Last name']} — ${p.projet_composantes_str || p.projet_segment || 'Lead'}`,
     status:          'open',
     contactId,
     source:          p.source || 'Formulaire web',
@@ -376,7 +376,7 @@ async function handleSubmit(request, env) {
   const emailLead = await ghl(env, '/conversations/messages', 'POST', {
     type:      'Email',
     contactId,
-    subject:   `Merci ${p['First name']} â nous avons bien reÃ§u votre demande`,
+    subject:   `Merci ${p['First name']} — nous avons bien reçu votre demande`,
     html:      buildLeadEmail(p),
     emailFrom: env.FROM_EMAIL,
   });
@@ -406,7 +406,7 @@ async function handleSubmit(request, env) {
     const emailInt = await ghl(env, '/conversations/messages', 'POST', {
       type:      'Email',
       contactId: internalId,
-      subject:   `ð¥ Lead ${oppValue.toLocaleString('fr-CA')} $ â ${p['First name']} ${p['Last name']} (${p.projet_segment})`,
+      subject:   `🔥 Lead ${oppValue.toLocaleString('fr-CA')} $ — ${p['First name']} ${p['Last name']} (${p.projet_segment})`,
       html:      buildInternalEmail(p, contactId, oppValue),
       emailFrom: env.FROM_EMAIL,
     });
@@ -416,6 +416,61 @@ async function handleSubmit(request, env) {
   return new Response(
     JSON.stringify({ ok: true, ...results }),
     { status: 200, headers: { ...corsH, 'Content-Type': 'application/json' } }
+  );
+}
+
+// ============================================================
+//  HANDLER /sms — notification SMS générique (val.town Alex, etc.)
+// ============================================================
+async function handleSms(request, env) {
+  const origin = request.headers.get('Origin') || '';
+  const corsH  = cors(origin);
+
+  // Auth simple par header partagé
+  const auth = request.headers.get('X-Worker-Key') || '';
+  if (env.WORKER_SHARED_KEY && auth !== env.WORKER_SHARED_KEY) {
+    return new Response(JSON.stringify({ ok: false, error: 'unauthorized' }),
+      { status: 401, headers: { ...corsH, 'Content-Type': 'application/json' } });
+  }
+
+  let body;
+  try { body = await request.json(); }
+  catch { return new Response(JSON.stringify({ ok: false, error: 'bad_json' }),
+    { status: 400, headers: { ...corsH, 'Content-Type': 'application/json' } }); }
+
+  const to     = String(body.to || env.INTERNAL_PHONE || '').replace(/[^\d+]/g, '');
+  const msg    = String(body.body || body.message || '').slice(0, 1500);
+  const source = String(body.source || 'generic');
+
+  if (!to || !msg) {
+    return new Response(JSON.stringify({ ok: false, error: 'missing_to_or_body' }),
+      { status: 400, headers: { ...corsH, 'Content-Type': 'application/json' } });
+  }
+
+  // Upsert contact interne/notif — réutilise pattern handleSubmit
+  const up = await ghl(env, '/contacts/upsert', 'POST', {
+    locationId: env.GHL_LOCATION_ID,
+    firstName:  'Raycom',
+    lastName:   'Notif',
+    phone:      to,
+    tags:       ['raycom-interne', 'do-not-contact', `src-${source}`],
+  });
+  const contactId = up.json.contact?.id || up.json.id;
+  if (!contactId) {
+    return new Response(JSON.stringify({ ok: false, error: 'upsert_failed', detail: up.json }),
+      { status: 502, headers: { ...corsH, 'Content-Type': 'application/json' } });
+  }
+
+  const sms = await ghl(env, '/conversations/messages', 'POST', {
+    type:       'SMS',
+    contactId,
+    fromNumber: env.GHL_FROM_NUMBER || '+14388016401',
+    message:    msg,
+  });
+
+  return new Response(
+    JSON.stringify({ ok: sms.ok, status: sms.status, contactId, source, detail: sms.ok ? undefined : sms.json }),
+    { status: sms.ok ? 200 : 502, headers: { ...corsH, 'Content-Type': 'application/json' } }
   );
 }
 
@@ -443,12 +498,22 @@ export default {
       }
     }
 
+    if (request.method === 'POST' && url.pathname === '/sms') {
+      try {
+        return await handleSms(request, env);
+      } catch (e) {
+        return new Response(
+          JSON.stringify({ error: 'worker_exception', message: String(e), stack: e.stack }),
+          { status: 500, headers: { ...corsH, 'Content-Type': 'application/json' } }
+        );
+      }
+    }
+
     if (url.pathname === '/health') {
       return new Response('Raycom Lead Proxy v3 OK', { status: 200, headers: corsH });
     }
 
     if (env.ASSETS) return env.ASSETS.fetch(request);
-    returnn env.ASSETS.fetch(request);
     return new Response('Not found', { status: 404, headers: corsH });
   },
 };
