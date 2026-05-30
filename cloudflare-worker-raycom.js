@@ -317,6 +317,36 @@ async function handleSubmit(request, env) {
   const contactId = upsert.json.contact?.id || upsert.json.id;
   results.contactId = contactId;
 
+  // 1b. DOCUMENTS → champs fichier GHL (dossier « Documents & photos »).
+  //     Best-effort : enveloppé en try/catch pour NE JAMAIS bloquer la création du lead.
+  //     Mappe les URLs (catbox) uploadées par le formulaire vers les vrais champs GHL.
+  try {
+    const DOC_MAP = {
+      photos_emplacement: 'photo_emplacement',
+      doc_facture_hq:     'doc_facture_hq',
+      photos_panneau:     'doc_photo_panneau',
+      doc_plans:          'doc_plan_batiment',
+    };
+    const present = Object.entries(DOC_MAP).filter(([src]) => p[src]);
+    if (present.length && contactId) {
+      const cfList = await ghl(env, `/locations/${env.GHL_LOCATION_ID}/customFields`, 'GET');
+      const byKey = {};
+      for (const f of (cfList.json?.customFields || [])) {
+        const k = String(f.fieldKey || f.key || '').replace(/^contact\./, '');
+        if (k) byKey[k] = f.id;
+      }
+      const customFields = present
+        .map(([src, key]) => (byKey[key] ? { id: byKey[key], field_value: String(p[src]) } : null))
+        .filter(Boolean);
+      if (customFields.length) {
+        const cfRes = await ghl(env, `/contacts/${contactId}`, 'PUT', { customFields });
+        results.steps.documents = { status: cfRes.status, ok: cfRes.ok, count: customFields.length };
+      }
+    }
+  } catch (e) {
+    results.steps.documents = { ok: false, error: String(e).slice(0, 200) };
+  }
+
   // 2. NOTE
   const noteLines = [
     '=== Projet ===',
