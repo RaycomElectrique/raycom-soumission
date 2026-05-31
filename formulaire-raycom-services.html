@@ -4,6 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Demande de soumission — Raycom Électrique</title>
+
+<!-- ===== TRACKING (cohérent avec la LP Powerwall) ===== -->
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','815529713850722');fbq('track','PageView');
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-78RJ8XLCBZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-78RJ8XLCBZ');</script>
+<!-- Microsoft Clarity -->
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","wvm6u5crpy");</script>
+
 <script>const _w=console.warn;console.warn=function(...a){if(a[0]&&String(a[0]).indexOf('cdn.tailwindcss.com')>-1)return;_w.apply(console,a);};</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -17,6 +34,7 @@
   .card{background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 6px 32px rgba(10,27,61,.08)}
   .btn-primary{background:linear-gradient(135deg,#1e7fd6 0%,#0a1b3d 100%);box-shadow:0 8px 28px rgba(30,127,214,.4);transition:transform .15s,box-shadow .15s}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(30,127,214,.55)}
+  .btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none}
   input,select,textarea{width:100%;padding:.8rem 1rem;border:1.5px solid var(--border);border-radius:10px;background:#fff;font-size:.95rem;color:var(--navy);transition:border-color .15s,box-shadow .15s}
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(30,127,214,.15)}
   label{font-weight:600;font-size:.875rem;color:var(--navy);margin-bottom:.4rem;display:block}
@@ -25,7 +43,6 @@
   .check-card:hover{border-color:var(--blue);background:#eef5fc}
   .check-card:has(input:checked){border-color:var(--blue);background:#e6f0fa;box-shadow:0 0 0 3px rgba(30,127,214,.12)}
   .check-card input{width:auto;margin:0;accent-color:var(--blue)}
-  .trust-badge{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:#cbd9ec}
   .progress{height:5px;background:#e5e7eb;border-radius:99px;overflow:hidden}
   .progress-bar{height:100%;background:linear-gradient(90deg,#3ea0ee,#1e7fd6);transition:width .3s;width:0%}
   .section-icon{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#1e7fd6,#0a1b3d);color:#fff;font-weight:800;font-size:.85rem;margin-right:.6rem}
@@ -47,17 +64,17 @@
   <div class="max-w-5xl mx-auto px-6 py-10">
     <div class="flex items-center justify-between mb-10 flex-wrap gap-6">
       <div class="bg-white rounded-2xl px-10 py-7 inline-block shadow-2xl">
-        <img src="LOGO%20Raycom%20Transparent.png" alt="Raycom Électrique inc." class="h-28 md:h-32 w-auto block">
+        <img src="https://assets.cdn.filesafe.space/Ey6SB5epk8GFGgL5BfhX/media/69d7e917982fd67a35e8a424.png" alt="Raycom Électrique inc." class="h-28 md:h-32 w-auto block">
       </div>
       <div class="flex flex-col items-end text-right gap-1">
-        <div class="text-xs uppercase tracking-widest text-blue-300 font-bold">RBQ 5590-9402-01</div>
-        <a href="tel:+14504748470" class="text-2xl font-black hover:text-blue-300 transition">📞 450-474-8470</a>
-        <a href="sms:+14388016401" class="text-sm font-semibold text-blue-200 hover:text-blue-300 transition">💬 Texto : 438-801-6401</a>
+        <div class="text-xs uppercase tracking-widest text-blue-300 font-bold">RBQ 5590-9402-01 · Certifié Tesla Powerwall</div>
+        <a href="tel:+14504748470" id="telLink" class="text-2xl font-black hover:text-blue-300 transition">📞 450-474-8470</a>
+        <a href="sms:+14388016401" id="smsLink" class="text-sm font-semibold text-blue-200 hover:text-blue-300 transition">💬 Texto : 438-801-6401</a>
       </div>
     </div>
     <div class="max-w-3xl">
       <h1 class="text-4xl md:text-5xl font-black leading-tight mb-4">Soumission <span style="color:#3ea0ee">gratuite</span><br>en quelques clics</h1>
-      <p class="text-lg text-blue-100 mb-6 max-w-2xl">Électricité, solaire, batteries et bornes de recharge.<br>Maître électricien certifié au Québec.</p>
+      <p class="text-lg text-blue-100 mb-6 max-w-2xl">Électricité, solaire, batteries Tesla Powerwall et bornes de recharge.<br>Maître électricien certifié au Québec.</p>
     </div>
   </div>
 </header>
@@ -98,8 +115,7 @@
           <div class="upload-box"><label>📄 Facture Hydro-Québec</label><input type="file" name="doc_facture_hq" accept=".pdf,.jpg,.jpeg,.png" multiple></div>
           <div class="upload-box"><label>📸 Photos du panneau électrique</label><input type="file" name="photos_panneau" accept="image/*,.pdf" multiple></div>
           <div class="upload-box"><label>📸 Photos du compteur</label><input type="file" name="photos_compteur" accept="image/*,.pdf" multiple></div>
-          <div class="upload-box"><label>📸 Photos de l'emplacement</label><input type="file" name="photos_emplacement" accept="image/*,.pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx" multiple>
-          </div>
+          <div class="upload-box"><label>📸 Photos de l'emplacement</label><input type="file" name="photos_emplacement" accept="image/*,.pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx" multiple></div>
         </div>
         <div id="blocNeuf" class="space-y-4 hidden">
           <div class="upload-box"><label>📐 Plans de construction</label><input type="file" name="doc_plans" accept=".pdf,.jpg,.jpeg,.png,.dwg" multiple></div>
@@ -125,28 +141,36 @@
         <h2 class="text-xl font-bold mb-3 flex items-center"><span class="section-icon">5</span>Équipements et partenaires</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-100 bg-white shadow-sm">
-            <img src="tesla-powerwall.svg" alt="Tesla Powerwall" class="h-10 w-auto mb-2 object-contain">
+            <img src="https://pub-1ccb4ae800c9447583fe56f73bc604ec.r2.dev/tesla/certified-installer-black.png" alt="Installateur certifié Tesla Powerwall" class="h-10 w-auto mb-2 object-contain">
             <span class="text-xs font-semibold text-slate-500">Tesla Powerwall</span>
           </div>
           <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-100 bg-white shadow-sm">
-            <img src="sigenergy.png" alt="Sigenergy" class="h-10 w-auto mb-2 object-contain">
+            <img src="https://assets.cdn.filesafe.space/Ey6SB5epk8GFGgL5BfhX/media/6997342b4c25027b288d284c.webp" alt="Sigenergy" class="h-10 w-auto mb-2 object-contain">
             <span class="text-xs font-semibold text-slate-500">Sigenergy</span>
           </div>
           <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-100 bg-white shadow-sm">
-            <img src="fox-ess.webp" alt="Fox ESS" class="h-10 w-auto mb-2 object-contain">
+            <img src="https://assets.cdn.filesafe.space/Ey6SB5epk8GFGgL5BfhX/media/69d7e9169c84d38e9e7ebb65.png" alt="Fox ESS" class="h-10 w-auto mb-2 object-contain">
             <span class="text-xs font-semibold text-slate-500">Fox ESS</span>
           </div>
           <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-slate-100 bg-white shadow-sm">
-            <img src="financeit.svg" alt="Financeit" class="h-10 w-auto mb-2 object-contain">
+            <img src="https://assets.cdn.filesafe.space/Ey6SB5epk8GFGgL5BfhX/media/69d7e91693f130b200031c3b.png" alt="Financeit" class="h-10 w-auto mb-2 object-contain">
             <span class="text-xs font-semibold text-slate-500">Financeit</span>
           </div>
         </div>
       </section>
 
+      <!-- 7. CONSENTEMENT CASL -->
+      <section>
+        <label class="check-card" style="align-items:flex-start;font-weight:500">
+          <input type="checkbox" name="consent" id="consent" required style="margin-top:.2rem">
+          <span>J'accepte que Raycom Électrique communique avec moi (courriel, téléphone, texto) au sujet de ma demande de soumission. Je peux retirer mon consentement en tout temps. <a class="link-blue" href="https://www.raycomelectrique.com" target="_blank" rel="noopener">Politique de confidentialité</a>.</span>
+        </label>
+      </section>
+
       <!-- SUBMIT -->
       <div class="pt-2">
         <button type="submit" class="btn-primary w-full text-white font-bold py-5 px-8 rounded-2xl text-lg" id="submitBtn">Obtenir ma soumission gratuite →</button>
-        <p class="text-center text-xs text-slate-400 mt-3">En soumettant, vous acceptez d'être contacté par Raycom Électrique. Aucun engagement.</p>
+        <p class="text-center text-xs text-slate-400 mt-3">Sans engagement. Financement FinanceIt disponible — sous réserve d'approbation de crédit.</p>
       </div>
 
     </form>
@@ -156,141 +180,139 @@
 <footer class="bg-navy text-white py-8 mt-8" style="background:#0a1b3d">
   <div class="max-w-5xl mx-auto px-6 text-center">
     <p class="font-bold text-lg mb-1">Raycom Électrique inc.</p>
-    <p class="text-blue-200 text-sm">3321 Ave de la Gare #112, Mascouche, QC J7K 0X7</p>
+    <p class="text-blue-200 text-sm">Siège social : 2222, rue Davignac, Mascouche, QC J7K 0K8</p>
+    <p class="text-blue-200 text-sm">Point de vente : 3321, av. de la Gare #112, Mascouche, QC J7K 0X7</p>
     <p class="text-blue-200 text-sm mt-1"><a href="tel:+14504748470" class="hover:text-white">450-474-8470</a> | <a href="mailto:info@raycomelectrique.com" class="hover:text-white">info@raycomelectrique.com</a></p>
-    <p class="text-blue-300 text-xs mt-3">RBQ 5590-9402-01 | © 2025 Raycom Électrique inc.</p>
+    <p class="text-blue-300 text-xs mt-3">RBQ 5590-9402-01 | Installateur certifié Tesla Powerwall | © 2026 Raycom Électrique inc.</p>
   </div>
 </footer>
 
 <script>
-const WORKER_URL = 'https://raycom-soumission.proud-leaf-b313.workers.dev/submit';
-const MAKE_WEBHOOK = 'https://hook.us2.make.com/8x27ox78k2zs8iq9h9q9we7dtcq75rvd';
+// ===== CONFIG (cohérent avec la LP Powerwall) =====
+const LEAD_URL = 'https://raycom-ghl-worker.proud-leaf-b313.workers.dev/lead'; // contact + opportunité VENTES "Nouveau lead" + Meta CAPI
 
-const PRIX_BASE = {
-  'Panneaux solaires': 18000, 'Batterie de stockage': 12000,
-  'Borne de recharge VÉ': 1200, 'Travaux électriques': 3500,
-  'Génératrice': 7000, 'Inspection / Diagnostic': 450
-};
-const MULT_SEGMENT = { 'Résidentiel': 1.0, 'Commercial': 1.8, 'Multilogement': 1.5, 'Municipal': 2.5, 'Agricole': 1.6 };
-const MULT_CONSO = {
-  '< 100 $/mois (~10 000 kWh/an)': 0.75, '100-200 $/mois (10-20 000 kWh/an)': 1.00,
-  '200-300 $/mois (20-30 000 kWh/an)': 1.35, '300-500 $/mois (30-50 000 kWh/an)': 1.70,
-  '500+ $/mois (50 000+ kWh/an)': 2.20
-};
-
-function calcBudget() {
-  const form = document.getElementById('raycomForm');
-  const composantes = Array.from(form.querySelectorAll('input[name=composantes]:checked')).map(c => c.value);
-  const segment = form.querySelector('[name=projet_segment]')?.value || 'Résidentiel';
-  const conso = form.querySelector('[name=hq_consommation_bracket]')?.value || '';
-  const nature = form.querySelector('input[name=projet_nature]:checked')?.value || 'Existant';
-  if (!composantes.length) return null;
-  if (nature === 'Construction neuve') return Math.round((MULT_SEGMENT[segment]||1)*50000/500)*500;
-  const hasSol = composantes.includes('Panneaux solaires');
-  let total = 0;
-  for (const c of composantes) {
-    const base = PRIX_BASE[c] || 2000;
-    total += (c === 'Panneaux solaires') ? base * (MULT_CONSO[conso]||1) : base;
-  }
-  if (hasSol && composantes.includes('Batterie de stockage')) total += 5000; if (segment === 'Multilogement' && composantes.includes('Borne de recharge VÉ')) total += 1500; if (segment === 'Multilogement' && composantes.includes('Borne de recharge VÉ')) total += 1500;
-  return Math.round(total * (MULT_SEGMENT[segment]||1) / 500) * 500;
+// ===== Attribution (UTM + clics pubs + page) =====
+function getAttribution(){
+  const q = new URLSearchParams(location.search);
+  const ls = (k)=>{try{return localStorage.getItem(k)||''}catch{return ''}};
+  const save=(k,v)=>{try{if(v)localStorage.setItem(k,v)}catch{}};
+  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid'].forEach(k=>{const v=q.get(k);if(v)save('ray_'+k,v)});
+  return {
+    utm_source:q.get('utm_source')||ls('ray_utm_source'),
+    utm_medium:q.get('utm_medium')||ls('ray_utm_medium'),
+    utm_campaign:q.get('utm_campaign')||ls('ray_utm_campaign'),
+    utm_term:q.get('utm_term')||ls('ray_utm_term'),
+    utm_content:q.get('utm_content')||ls('ray_utm_content'),
+    fbclid:q.get('fbclid')||ls('ray_fbclid'),
+    gclid:q.get('gclid')||ls('ray_gclid'),
+    page_url:location.href
+  };
 }
+function getCookie(n){const m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)');return m?m.pop():''}
+const EVENT_ID = 'lead_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
 
-function updateBudget() {
-  const val = calcBudget();
-  const section = document.getElementById('budgetEstimation');
-  const display = document.getElementById('budgetDisplay');
-  if (val) {
-    section.classList.remove('hidden');
-    display.textContent = val.toLocaleString('fr-CA') + ' $';
-    document.getElementById('raycomForm').dataset.budgetEstime = val;
-  } else {
-    section.classList.add('hidden');
-    delete document.getElementById('raycomForm').dataset.budgetEstime;
-  }
+// Clic téléphone/texto = évènement Contact
+['telLink','smsLink'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',()=>{try{fbq('track','Contact')}catch{};try{gtag('event','phone_call_click')}catch{}})});
+
+// ===== Budget estimé =====
+const PRIX_BASE = { 'Panneaux solaires':18000,'Batterie de stockage':12000,'Borne de recharge VÉ':1200,'Travaux électriques':3500,'Génératrice':7000,'Inspection / Diagnostic':450 };
+const MULT_SEGMENT = { 'Résidentiel':1.0,'Commercial':1.8,'Multilogement':1.5,'Municipal':2.5,'Agricole':1.6 };
+const MULT_CONSO = { '< 100 $/mois (~10 000 kWh/an)':0.75,'100-200 $/mois (10-20 000 kWh/an)':1.00,'200-300 $/mois (20-30 000 kWh/an)':1.35,'300-500 $/mois (30-50 000 kWh/an)':1.70,'500+ $/mois (50 000+ kWh/an)':2.20 };
+function calcBudget(){
+  const form=document.getElementById('raycomForm');
+  const composantes=Array.from(form.querySelectorAll('input[name=composantes]:checked')).map(c=>c.value);
+  const segment=form.querySelector('[name=projet_segment]')?.value||'Résidentiel';
+  const conso=form.querySelector('[name=hq_consommation_bracket]')?.value||'';
+  const nature=form.querySelector('input[name=projet_nature]:checked')?.value||'Existant';
+  if(!composantes.length)return null;
+  if(nature==='Construction neuve')return Math.round((MULT_SEGMENT[segment]||1)*50000/500)*500;
+  const hasSol=composantes.includes('Panneaux solaires');let total=0;
+  for(const c of composantes){const base=PRIX_BASE[c]||2000;total+=(c==='Panneaux solaires')?base*(MULT_CONSO[conso]||1):base;}
+  if(hasSol&&composantes.includes('Batterie de stockage'))total+=5000;
+  if(segment==='Multilogement'&&composantes.includes('Borne de recharge VÉ'))total+=1500;
+  return Math.round(total*(MULT_SEGMENT[segment]||1)/500)*500;
 }
-
-document.querySelectorAll('input[name=composantes], [name=projet_segment], [name=hq_consommation_bracket], input[name=projet_nature]')
-  .forEach(el => el.addEventListener('change', updateBudget));
-
-const nature = document.querySelectorAll('input[name=projet_nature]');
-nature.forEach(r => r.addEventListener('change', () => {
-  const isNeuf = r.value === 'Construction neuve' && r.checked;
-  document.getElementById('blocExistant').classList.toggle('hidden', isNeuf);
-  document.getElementById('blocNeuf').classList.toggle('hidden', !isNeuf);
-  updateBudget();
-}));
-
-const fields = document.querySelectorAll('input[required], select[required]');
-function updateProgress() {
-  const filled = Array.from(fields).filter(f => f.value.trim()).length;
-  document.getElementById('progressBar').style.width = Math.round(filled / fields.length * 100) + '%';
+let beganCheckout=false;
+function updateBudget(){
+  const val=calcBudget();const section=document.getElementById('budgetEstimation');const display=document.getElementById('budgetDisplay');
+  if(val){section.classList.remove('hidden');display.textContent=val.toLocaleString('fr-CA')+' $';document.getElementById('raycomForm').dataset.budgetEstime=val;
+    if(!beganCheckout){beganCheckout=true;try{fbq('track','InitiateCheckout')}catch{};try{gtag('event','begin_checkout')}catch{}}
+  }else{section.classList.add('hidden');delete document.getElementById('raycomForm').dataset.budgetEstime;}
 }
-fields.forEach(f => f.addEventListener('input', updateProgress));
+document.querySelectorAll('input[name=composantes], [name=projet_segment], [name=hq_consommation_bracket], input[name=projet_nature]').forEach(el=>el.addEventListener('change',updateBudget));
+document.querySelectorAll('input[name=projet_nature]').forEach(r=>r.addEventListener('change',()=>{const isNeuf=r.value==='Construction neuve'&&r.checked;document.getElementById('blocExistant').classList.toggle('hidden',isNeuf);document.getElementById('blocNeuf').classList.toggle('hidden',!isNeuf);updateBudget();}));
 
-async function uploadFile(file) {
-  const fd = new FormData();
-  fd.append('file', file);
-  try {
-    const r = await fetch('https://catbox.moe/user/api.php', { method: 'POST', body: fd });
-    return r.ok ? await r.text() : null;
-  } catch { return null; }
-}
+// Barre de progression
+const fields=document.querySelectorAll('input[required], select[required]');
+function updateProgress(){const filled=Array.from(fields).filter(f=>f.type==='checkbox'?f.checked:f.value.trim()).length;document.getElementById('progressBar').style.width=Math.round(filled/fields.length*100)+'%';}
+fields.forEach(f=>f.addEventListener('input',updateProgress));
+fields.forEach(f=>f.addEventListener('change',updateProgress));
 
-document.getElementById('raycomForm').addEventListener('submit', async (e) => {
+// ===== Upload fichiers (hébergement temporaire) =====
+async function uploadFile(file){const fd=new FormData();fd.append('file',file);try{const r=await fetch('https://catbox.moe/user/api.php',{method:'POST',body:fd});return r.ok?await r.text():null;}catch{return null;}}
+
+// ===== Soumission =====
+document.getElementById('raycomForm').addEventListener('submit', async (e)=>{
   e.preventDefault();
-  const form = e.target;
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.innerHTML = 'Envoi en cours…';
+  const form=e.target;const btn=document.getElementById('submitBtn');
+  if(!form.querySelector('#consent').checked){alert('Veuillez accepter d\'être contacté pour continuer.');return;}
+  btn.disabled=true;btn.innerHTML='Envoi en cours…';
 
-  const fd = new FormData(form);
-  const composantes = fd.getAll('composantes');
+  const fd=new FormData(form);
+  const composantes=fd.getAll('composantes');
+  const nature=fd.get('projet_nature');const segment=fd.get('projet_segment');
+  const bracket=fd.get('hq_consommation_bracket');const notes=fd.get('projet_notes');
+  const budget=form.dataset.budgetEstime||'';
 
-  const fileFields = ['doc_facture_hq','photos_panneau','photos_compteur','photos_emplacement','doc_plans','doc_autres'];
-  const uploadedUrls = {};
-  for (const field of fileFields) {
-    const files = Array.from(form.querySelectorAll(`[name=${field}]`)).flatMap(i => Array.from(i.files || []));
-    if (files.length) {
-      const urls = await Promise.all(files.map(uploadFile));
-      uploadedUrls[field] = urls.filter(Boolean).join(' | ');
-    }
+  // Upload des fichiers -> URLs
+  const fileFields=['doc_facture_hq','photos_panneau','photos_compteur','photos_emplacement','doc_plans','doc_autres'];
+  const up={};
+  for(const field of fileFields){
+    const files=Array.from(form.querySelectorAll(`[name=${field}]`)).flatMap(i=>Array.from(i.files||[]));
+    if(files.length){const urls=await Promise.all(files.map(uploadFile));up[field]=urls.filter(Boolean).join(' | ');}
   }
 
-  const payload = {
-    'First name': fd.get('firstName'),
-    'Last name': fd.get('lastName'),
-    'Email': fd.get('email'),
-    'Phone': fd.get('phone'),
-    'Address': fd.get('address1'),
-    'City': fd.get('city'),
-    'State': fd.get('state'),
-    'Postal code': fd.get('postalCode'),
-    'Country': 'CA',
-    projet_segment: fd.get('projet_segment'),
-    projet_nature: fd.get('projet_nature'),
-    projet_composantes: composantes,
-    projet_composantes_str: composantes.join(', '),
-    hq_consommation_bracket: fd.get('hq_consommation_bracket'),
-    projet_notes: fd.get('projet_notes'),
-    budget_estime: form.dataset.budgetEstime || null,
-    source: 'Formulaire web',
-    submitted_at: new Date().toISOString(),
-    ...uploadedUrls
+  // Résumé texte (filet : tout est conservé même si une option ne matche pas)
+  const summary=[nature&&('Nature: '+nature),segment&&('Type bâtiment: '+segment),composantes.length&&('Composantes: '+composantes.join(', ')),bracket&&('Consommation: '+bracket),budget&&('Budget estimé: '+Number(budget).toLocaleString('fr-CA')+' $'),notes&&('Notes: '+notes)].filter(Boolean).join(' | ');
+
+  // Champs custom GHL
+  const customFields={};
+  if(segment)customFields.projet_segment=segment;
+  if(composantes.length)customFields.projet_composantes=composantes;
+  if(summary)customFields.message=summary;
+  if(up.doc_facture_hq)customFields.doc_facture_hq=up.doc_facture_hq;
+  if(up.photos_panneau)customFields.doc_photo_panneau=up.photos_panneau;
+  if(up.photos_emplacement)customFields.photo_emplacement=up.photos_emplacement;
+  if(up.doc_plans)customFields.doc_plan_batiment=up.doc_plans;
+  const extra=[up.photos_compteur&&('Compteur: '+up.photos_compteur),up.doc_autres&&('Autres: '+up.doc_autres)].filter(Boolean).join(' | ');
+  if(extra)customFields.message=(customFields.message?customFields.message+' || ':'')+extra;
+
+  const attr=getAttribution();
+  const payload={
+    firstName:fd.get('firstName'),lastName:fd.get('lastName'),email:fd.get('email'),phone:fd.get('phone'),
+    address1:fd.get('address1'),city:fd.get('city'),state:fd.get('state'),postalCode:fd.get('postalCode'),country:'CA',
+    customFields,
+    consent:true,
+    monetaryValue:budget?Number(budget):undefined,
+    source:'Formulaire web — Soumission',
+    tags:['formulaire-web','soumission','lead'],
+    ...attr,
+    fbp:getCookie('_fbp'),fbc:getCookie('_fbc'),
+    event_id:EVENT_ID
   };
 
-  try {
-    const [r1] = await Promise.allSettled([
-      fetch(WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }),
-      fetch(MAKE_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
-    ]);
-    if (r1.status === 'fulfilled' && r1.value.ok) {
-      form.innerHTML = '<div class="text-center py-16"><div class="text-5xl mb-6">✅</div><h2 class="text-2xl font-bold text-navy mb-3">Votre demande a bien été reçue !</h2><p class="text-slate-600 mb-6 max-w-md mx-auto">Merci pour votre confiance. Un membre de notre équipe communiquera avec vous dans les 24 heures ouvrables pour établir votre soumission personnalisée.</p><ul class="text-left inline-block space-y-3 text-slate-600 text-sm"><li class="flex items-start gap-2"><span class="text-green-500 font-bold">&#x2713;</span><span><strong>Financement disponible</strong> via Financeit &mdash; approbation en quelques minutes, sans impact sur votre crédit.</span></li><li class="flex items-start gap-2"><span class="text-green-500 font-bold">&#x2713;</span><span><strong>Subventions et crédits d&#x27;impôt</strong> disponibles selon votre projet &mdash; nous vous guidons dans toutes les démarches.</span></li><li class="flex items-start gap-2"><span class="text-green-500 font-bold">&#x2713;</span><span><strong>Installation certifiée maître électricien RBQ</strong> &mdash; travaux garantis, conformes au Code du bâtiment du Québec.</span></li></ul></div>';
+  try{
+    const r=await fetch(LEAD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const j=await r.json().catch(()=>({}));
+    if(r.ok && j.ok){
+      // Évènement Lead (dédup CAPI via le même event_id)
+      try{fbq('track','Lead',{value:budget?Number(budget):0,currency:'CAD'},{eventID:EVENT_ID})}catch{}
+      try{gtag('event','generate_lead',{value:budget?Number(budget):0,currency:'CAD'})}catch{}
+      form.innerHTML='<div class="text-center py-16"><div class="text-5xl mb-6">✅</div><h2 class="text-2xl font-bold text-navy mb-3">Votre demande a bien été reçue !</h2><p class="text-slate-600 mb-6 max-w-md mx-auto">Merci pour votre confiance. Un membre de notre équipe communiquera avec vous dans les 24 heures ouvrables pour établir votre soumission personnalisée.</p><ul class="text-left inline-block space-y-3 text-slate-600 text-sm"><li class="flex items-start gap-2"><span class="text-green-500 font-bold">&#x2713;</span><span><strong>Financement disponible</strong> via Financeit &mdash; sous réserve d&#x27;approbation de crédit.</span></li><li class="flex items-start gap-2"><span class="text-green-500 font-bold">&#x2713;</span><span><strong>Subventions et crédits d&#x27;impôt</strong> selon votre projet &mdash; nous vous guidons.</span></li><li class="flex items-start gap-2"><span class="text-green-500 font-bold">&#x2713;</span><span><strong>Installation certifiée maître électricien RBQ</strong> &mdash; travaux garantis, conformes au Code du bâtiment du Québec.</span></li></ul></div>';
     } else throw new Error('worker_error');
-  } catch {
+  }catch(err){
     alert('Erreur lors de l\'envoi. Réessayez ou appelez-nous au 450-474-8470.');
-    btn.disabled = false;
-    btn.innerHTML = 'Obtenir ma soumission gratuite →';
+    btn.disabled=false;btn.innerHTML='Obtenir ma soumission gratuite →';
   }
 });
 </script>
